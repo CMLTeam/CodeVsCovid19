@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Codevscovid19Application {
+public class CodeVsCovid19Application {
 
-	public static void main(String[] args) {
-		SpringApplication.run(Codevscovid19Application.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(CodeVsCovid19Application.class, args);
+    }
 
 }
