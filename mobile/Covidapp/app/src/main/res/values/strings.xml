@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Covid-app</string>
+
+    <!-- Bottom bar menu titles -->
+    <string name="bottom_bar_shops">Shops</string>
+    <string name="bottom_bar_profile">Profile</string>
+
 </resources>
