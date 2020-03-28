@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.covid_app.R
+import com.example.demoappdrawermenu.service.HttpService
 
 class ShopFragment: Fragment() {
 
@@ -24,7 +25,14 @@ class ShopFragment: Fragment() {
 
 
     companion object {
-        fun newInstance(): ShopFragment = ShopFragment()
+        private var httpService: HttpService? = null
+
+        fun newInstance(): ShopFragment {
+            if (httpService == null) {
+                httpService = HttpService.create()
+            }
+            return ShopFragment()
+        }
     }
 
 }

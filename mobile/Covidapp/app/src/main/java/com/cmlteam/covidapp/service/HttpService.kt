@@ -12,33 +12,48 @@ import java.util.concurrent.TimeUnit
 
 interface HttpService {
 
-    @GET("/user/{id}")
+    @GET("/customers/{id}")
     fun getUser(
         @Path("id") id: String
-
     ): Call<Any>//User>
 
 
-    @GET("/target")
+    @GET("/targets")
     fun getPlaces(
     ): Call<Any>//List<Places>
 
 
-    @GET("/target/{target_id}")
-    fun getPlace(
-        @Path("target_id") id: String
-    ) : Call<Any>//Place
+    @GET("/target/slots")
+    fun getPlaceSlots(
+        @Query("targetId") targetId: String
+    ) : Call<Any>//Place&Slots
 
-    @POST("/reserve")
+    @POST("/bookings")
     fun reserveSlot(
         @Body bookSlotRequest: BookSlotRequest
     ): Call<Void>
 
-    @GET("/reserve/{user_id}/{target_id}")
-    fun getReservedSlots(
-        @Path("user_id") userId: String,
+    @GET("/bookings")
+    fun getReservedSlots(): Call<Any>//List<Place&Slots>
+
+    /* Returns ReservationValidationResult - {validated: true/false; reservations: list of reservations} */
+    @GET("/customers/{customer_id}/slots/{target_id}")
+    fun validateSlotReservation(
+        @Path("customer_id") userId: String,
         @Path("target_id") placeId: String
-    ):Call<Any>//List<Reservation>
+    ): Call<Any>//ReservationValidationResult>
+
+    @POST("/confirm")
+    fun reserveNow(
+        @Body bookSlotRequest: BookSlotRequest
+    )
+
+    @GET("customers/{customer_id}/related")
+    fun getRelatedUsers(
+        @Path("customer_id") userId: String
+    )
+
+
 
 //    @POST("/auth/sign-up")
 //    fun signUp(
@@ -47,7 +62,7 @@ interface HttpService {
 //
 
     companion object {
-        fun create(accessToken:String = ""): HttpService {
+        fun create(): HttpService {
 
             val client = OkHttpClient.Builder().connectTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS).build()
