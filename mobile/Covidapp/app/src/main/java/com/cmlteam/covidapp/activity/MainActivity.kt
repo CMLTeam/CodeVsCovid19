@@ -6,8 +6,8 @@ import androidx.appcompat.app.ActionBar
 import androidx.fragment.app.Fragment
 import com.example.covid_app.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import fragments.ProfileFragment
-import fragments.ShopFragment
+import com.cmlteam.covidapp.fragments.ProfileFragment
+import com.cmlteam.covidapp.fragments.ShopFragment
 
 class MainActivity : AppCompatActivity() {
 
