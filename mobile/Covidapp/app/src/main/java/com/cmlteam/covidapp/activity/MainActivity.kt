@@ -1,4 +1,4 @@
-package activities
+package com.cmlteam.covidapp.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
