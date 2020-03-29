@@ -61,7 +61,6 @@ get slots by target id
         longitude: float,
         workingTime: "string", // when target(e.g. shop) is working
         pictureUrl: string, // to put it in <img> tag
-        slots: [], //??
     },
     slots: [
         {
