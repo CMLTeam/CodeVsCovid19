@@ -1,4 +1,4 @@
-package com.cmlteam.covidapp.fragments
+package com.cmlteam.covidapp.validator.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,8 +15,8 @@ class ProfileFragment: Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_profile, container, false)
-        view.findViewById<TextView>(R.id.textView_test).text = "Profile is here"
+        val view = inflater.inflate(R.layout.fragment_start_screen, container, false)
+        view.findViewById<TextView>(R.id.reservation_found).text = "Profile is here"
 
 
         return view
@@ -24,6 +24,7 @@ class ProfileFragment: Fragment(){
 
 
     companion object{
-        fun newInstance(): ProfileFragment = ProfileFragment()
+        fun newInstance(): ProfileFragment =
+            ProfileFragment()
     }
 }

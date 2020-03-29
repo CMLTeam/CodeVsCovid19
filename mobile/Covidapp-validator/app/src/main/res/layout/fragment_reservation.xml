@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/reservation_not_found"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text="Reservation not found"
+        android:textColor="#E91E63"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/reservation_found"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text="Reservation found:"
+        android:textColor="@color/design_default_color_secondary_variant"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/reservation_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Mon, 30 Mar 2:30pm - 3:00pm"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/confirm_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="#19B64C"
+        android:text="Confrim"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <ImageView
+        android:id="@+id/check_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/checkmark" />
+
+</LinearLayout>

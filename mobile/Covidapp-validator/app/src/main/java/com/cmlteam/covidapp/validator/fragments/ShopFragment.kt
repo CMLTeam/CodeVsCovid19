@@ -1,4 +1,4 @@
-package com.cmlteam.covidapp.fragments
+package com.cmlteam.covidapp.validator.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,7 +17,7 @@ class ShopFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_shops, container, false)
-        view.findViewById<TextView>(R.id.textView_test).text = "Shops is here"
+        view.findViewById<TextView>(R.id.reservation_found).text = "Shops is here"
 
         return view
     }

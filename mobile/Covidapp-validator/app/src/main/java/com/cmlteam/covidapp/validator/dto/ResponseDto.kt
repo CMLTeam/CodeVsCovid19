@@ -1,4 +1,4 @@
-package com.cmlteam.covidapp.dto
+package com.cmlteam.covidapp.validator.dto
 
 data class Customer(
     val id: Int, // customer id
@@ -25,7 +25,8 @@ data class Target(
 )
 
 data class Slot(
-    val targetId: String,
+    val id: Int,
+    val targetId: Int,
     val description: String, //string representation
     val startDate: String, // ISO8601 datetime , to sort by,
     val endDate: String, // ISO8601, end date to maybe sort by
