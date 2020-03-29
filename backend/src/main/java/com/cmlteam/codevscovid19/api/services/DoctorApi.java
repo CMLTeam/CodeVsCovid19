@@ -6,6 +6,8 @@ import com.cmlteam.codevscovid19.repo.CustomerRepository;
 import com.cmlteam.codevscovid19.repo.DoctorRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -35,4 +37,15 @@ public class DoctorApi {
         List<Integer> customerFamily = customerRepository.findById(customerId).getCloseCommunicationWith();
         return customerRepository.findIn(customerFamily);
     }
+
+    @PutMapping("/customers/{customer_id}/status")
+    public void changeCustomerStatus(@PathVariable(name = "customer_id") Integer customerId,
+                                     @RequestBody ChangeStatusModel model) {
+        customerRepository.findById(customerId).setStatus(model.status);
+    }
+
+    private static class ChangeStatusModel {
+        Customer.CustomerStatus status;
+    }
+
 }
