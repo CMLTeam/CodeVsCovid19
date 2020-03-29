@@ -88,6 +88,7 @@ GET /me
         id: interger, // customer id
         phoneNumber: string, // phoneNumber,
         documentId: string,//some sort of ID for government, acquired via BankID (potentially)
+        name: string, // first last names
         illnessRate: integer, // from 0 to 1000 
         status: string, // enum: [normal, required_doctor_visit, civid19_positive]
         address: string, // just to print
@@ -156,27 +157,35 @@ Web-Hook to inform backend that customer used current slot
 
 ## Endpoints for doctor
 
-GET /doctor/{doctor_id}/customers
+GET /doctors/{doctor_id}
+
+<--
+{
+    id: integer
+    name: string
+}
+
+GET /doctors/{doctor_id}/customers
 
 Getting customers.
 Authorization for doctor is not required, we assume here is only one doctor
 
---> url param
-```
-    id: interger // customer id.
-```
 <-- json
 ```
-{
-    id: interger, // customer id
-    phoneNumber: string, // phoneNumber,
-    documentId: string,//some sort of ID for government, acquired via BankID (potentially)
-    illnessRate: integer, // from 0 to 1000 
-    status: string, // enum: [normal, required_doctor_visit, civid19_positive]
-    address: string, // just to print
-    pictureUrl: string, // to put it in <img> tag
-    closeCommunicationWith: interger[] // ids of customers with whom customer relate
-}
+[
+    {
+        id: interger, // customer id
+        phoneNumber: string, // phoneNumber,
+        documentId: string,//some sort of ID for government, acquired via BankID (potentially)
+        name: string, // first last names
+        illnessRate: integer, // from 0 to 1000 
+        status: string, // enum: [normal, required_doctor_visit, civid19_positive]
+        address: string, // just to print
+        pictureUrl: string, // to put it in <img> tag
+        closeCommunicationWith: interger[] // ids of customers with whom customer relate
+    },
+    ...
+]
 ```
 
 GET /customers/{customer_id}/related
@@ -190,6 +199,7 @@ get customers with whom given customer in close relationship (basically - family
            id: interger, // customer id
            phoneNumber: string, // phoneNumber,
            documentId: string,//some sort of ID for government, acquired via BankID (potentially)
+           name: string, // first and last name
            illnessRate: integer, // from 0 to 1000 
            status: string, // enum: [normal, required_doctor_visit, civid19_positive]
            address: string, // just to print
