@@ -20,38 +20,38 @@ interface HttpService {
 
     @GET("/targets")
     fun getPlaces(
-    ): Call<Any>//List<Places>
+    ): Call<Any>//List<Target>
 
 
     @GET("/target/slots")
     fun getPlaceSlots(
         @Query("targetId") targetId: String
-    ) : Call<Any>//Place&Slots
+    ) : Call<Any> //Target  - with slots
 
     @POST("/bookings")
     fun reserveSlot(
-        @Body bookSlotRequest: BookSlotRequest
+        @Body bookSlotRequest: BookSlotRequest  // {customer_id, slot_id? or slot_date_time?}
     ): Call<Void>
 
     @GET("/bookings")
-    fun getReservedSlots(): Call<Any>//List<Place&Slots>
+    fun getReservedSlots(): Call<Any>//List<Target>
 
     /* Returns ReservationValidationResult - {validated: true/false; reservations: list of reservations} */
-    @GET("/customers/{customer_id}/slots/{target_id}")
-    fun validateSlotReservation(
+    @GET("/customers/{customer_id}/bookings/{target_id}")  //for a security app
+    fun getSlotReservations(
         @Path("customer_id") userId: String,
         @Path("target_id") placeId: String
-    ): Call<Any>//ReservationValidationResult>
+    ): Call<Any>//List<Slot>
 
     @POST("/confirm")
-    fun reserveNow(
-        @Body bookSlotRequest: BookSlotRequest
-    )
+    fun confirmSlot(
+        @Body bookSlotRequest: BookSlotRequest    // {customer_id, slot_id? or slot_date_time?}
+    ) : Call<Void>
 
     @GET("customers/{customer_id}/related")
     fun getRelatedUsers(
-        @Path("customer_id") userId: String
-    )
+        @Path("customer_id") userId: Int
+    ) : Call<List<Int>>
 
 
 
