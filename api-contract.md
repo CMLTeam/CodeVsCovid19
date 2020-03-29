@@ -90,7 +90,7 @@ GET /me
         documentId: string,//some sort of ID for government, acquired via BankID (potentially)
         name: string, // first last names
         illnessRate: integer, // from 0 to 1000 
-        status: string, // enum: [normal, required_doctor_visit, civid19_positive]
+        status: string, // enum: [normal, analysis, ill]
         address: string, // just to print
         pictureUrl: string, // to put it in <img> tag
         closeСommunicationWith: interger[] // ids of customers with whom customer relate
@@ -222,7 +222,7 @@ get customers with whom given customer in close relationship (basically - family
            documentId: string,//some sort of ID for government, acquired via BankID (potentially)
            name: string, // first and last name
            illnessRate: integer, // from 0 to 1000 
-           status: string, // enum: [normal, required_doctor_visit, civid19_positive]
+           status: string, // enum: [normal, analysis, ill]
            address: string, // just to print
            pictureUrl: string, // to put it in <img> tag,
       },
@@ -240,7 +240,7 @@ when status changed from anything to 'normal', illnessRate resets to default
 --> json
 ```
 {
-    status: string, // enum: [normal, required_doctor_visit, civid19_positive]
+    status: string, // enum: [normal, analysis, ill]
 }
 ```
 <--
