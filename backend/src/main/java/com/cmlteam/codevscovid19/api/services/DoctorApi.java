@@ -24,9 +24,15 @@ public class DoctorApi {
         return doctorRepository.findById(doctorId);
     }
 
-    @GetMapping("/customers/{doctor_id}/customers")
+    @GetMapping("/doctors/{doctor_id}/customers")
     public List<Customer> getDoctorCustomers(@PathVariable(name = "doctor_id") Integer doctorId) {
         Doctor doctor = doctorRepository.findById(doctorId);
         return customerRepository.findIn(doctor.getCustomers());
+    }
+
+    @GetMapping("/customers/{customer_id}/related")
+    public List<Customer> getCustomersClosePeople(@PathVariable(name = "customer_id") Integer customerId) {
+        List<Integer> customerFamily = customerRepository.findById(customerId).getCloseCommunicationWith();
+        return customerRepository.findIn(customerFamily);
     }
 }
