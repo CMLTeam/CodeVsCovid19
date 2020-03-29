@@ -1,4 +1,23 @@
 
+
+## Test data
+
+To see detailed information, call correspondent API endpoints.
+
+#### Customers:
+1001 - John Doe, 1002 - Jennifer Doe (both related to each other)
+
+#### Doctors: 
+2001 - watching for 1001 John Doe
+
+#### Slots: 
+3001, 3002, 3003, 3004, 3005, 3006
+    
+#### Targets: 
+4001 (slots: 3001 3002 3003) ,
+
+4002 (slots: 3004 3005 3006)
+    
 ### Endpoints for menu
 
 GET /targets 
@@ -25,8 +44,10 @@ backend assume that user always the same, auth not required.
         longitude: float,
         workingTime: "string", // when target(e.g. shop) is working
         pictureUrl: string, // to put it in <img> tag
-        slotsPreviews: [
+        slots: [
             {
+                slotId: integer,
+                asString: string,
                 startDate: datetime, // ISO8601, to sort by,
                 endDate: datetime, // ISO8601, end date to maybe sort by
                 freeCapacity: integer // how many people may join slot
@@ -41,18 +62,14 @@ backend assume that user always the same, auth not required.
 ]
 ```
 
-GET /targets/slots/
+GET /targets/{target_id}/slots
 
-get slots by target id
+get slots by target id. Returned slots are grouped by target id.
 
---> url params
-```   
-    targetId: integer
-```
 <-- json
 ```
 [
-    target: {
+    {
         id: integer, 
         type: string // enum: ["shop", "pharmacy", ...]
         name: string,
@@ -63,16 +80,18 @@ get slots by target id
         longitude: float,
         workingTime: "string", // when target(e.g. shop) is working
         pictureUrl: string, // to put it in <img> tag
+        slots: [
+            {
+            slotId: integer,
+            asString: string, //representation like string: "08.00 - 10.30 AM"
+            startDate: datetime, // ISO8601, start date to sort by 
+            endDate: datetime, // ISO8601, end date to maybe sort by
+            freeCapacity: integer // how many people may join slot  
+            },
+            ...
+        ]
     },
-    slots: [
-        {
-        asString: string, //representation like string: "08.00 - 10.30 AM"
-        startDate: datetime, // ISO8601, start date to sort by 
-        endDate: datetime, // ISO8601, end date to maybe sort by
-        freeCapacity: integer // how many people may join slot  
-        },
-        ...
-    ]
+    ...
 ]
 ```
 
@@ -90,7 +109,7 @@ GET /me
         documentId: string,//some sort of ID for government, acquired via BankID (potentially)
         name: string, // first last names
         illnessRate: integer, // from 0 to 1000 
-        status: string, // enum: [normal, required_doctor_visit, civid19_positive]
+        status: string, // enum: [normal, analysis, ill]
         address: string, // just to print
         pictureUrl: string, // to put it in <img> tag
         closeСommunicationWith: interger[] // ids of customers with whom customer relate
@@ -101,18 +120,36 @@ GET /slots/
 
 Get customer's booked slots 
 
-<-- json
+<--- json
+
 ```
 [
     {
-        targetName: string,
-        asString: string, //representation like string: "08.00 - 10.30 AM"
-        startDate: datetime, // ISO8601, start date to sort by 
-        endDate: datetime, // ISO8601, end date to maybe sort by
-        freeCapacity: integer // how many people may join slot  
-    }
+        id: integer, 
+        type: string // enum: ["shop", "pharmacy", ...]
+        name: string,
+        distance: integer, // distance in meters from you,
+        maxPeopleCapacity: integer,
+        address: string,
+        latitude: float,
+        longitude: float,
+        workingTime: "string", // when target(e.g. shop) is working
+        pictureUrl: string, // to put it in <img> tag
+        slots: [
+            {
+            slotId: integer,
+            asString: string, //representation like string: "08.00 - 10.30 AM"
+            startDate: datetime, // ISO8601, start date to sort by 
+            endDate: datetime, // ISO8601, end date to maybe sort by
+            freeCapacity: integer // how many people may join slot  
+            },
+            ...
+        ]
+    },
+    ...
 ]
 ```
+
 
 POST /bookings
 
@@ -120,6 +157,7 @@ post new booking (customer is gonna be hardcoded)
 
 --> url param
 ```
+    customerId: integer //it can be also called by guard, but if null use hardcoded customer id?
     slotId: integer, // slot id 
 ```
 <-- ```200 OK```
@@ -133,13 +171,15 @@ for security guard on target's entrance
 <--
 ```
    [
-       {
-           asString: string, //representation like string: "08.00 - 10.30 AM"
-           startDate: datetime, // ISO8601, start date to sort by 
-           endDate: datetime, // ISO8601, end date to maybe sort by
-           freeCapacity: integer // how many people may join slot  
-       }
-   ]
+        {
+        slotId: integer,
+        asString: string, //representation like string: "08.00 - 10.30 AM"
+        startDate: datetime, // ISO8601, start date to sort by 
+        endDate: datetime, // ISO8601, end date to maybe sort by
+        freeCapacity: integer // how many people may join slot  
+        },
+        ...
+    ]
 ```
 
 POST /took-slot
@@ -150,7 +190,7 @@ Web-Hook to inform backend that customer used current slot
 ```
 {
     customerId : integer,
-    targetId : integer
+    slotId: integer,
 }
 ```
 <-- ``` 200 ```
@@ -179,7 +219,7 @@ Authorization for doctor is not required, we assume here is only one doctor
         documentId: string,//some sort of ID for government, acquired via BankID (potentially)
         name: string, // first last names
         illnessRate: integer, // from 0 to 1000 
-        status: string, // enum: [normal, required_doctor_visit, civid19_positive]
+        status: string, // enum: [normal, analysis, ill]
         address: string, // just to print
         pictureUrl: string, // to put it in <img> tag
         closeCommunicationWith: interger[] // ids of customers with whom customer relate
@@ -201,7 +241,7 @@ get customers with whom given customer in close relationship (basically - family
            documentId: string,//some sort of ID for government, acquired via BankID (potentially)
            name: string, // first and last name
            illnessRate: integer, // from 0 to 1000 
-           status: string, // enum: [normal, required_doctor_visit, civid19_positive]
+           status: string, // enum: [normal, analysis, ill]
            address: string, // just to print
            pictureUrl: string, // to put it in <img> tag,
       },
@@ -219,7 +259,7 @@ when status changed from anything to 'normal', illnessRate resets to default
 --> json
 ```
 {
-    status: string, // enum: [normal, required_doctor_visit, civid19_positive]
+    status: string, // enum: [normal, analysis, ill]
 }
 ```
 <--

@@ -1,10 +1,13 @@
 package com.cmlteam.codevscovid19.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
 @Data
+@AllArgsConstructor
 public class Customer {
 
     private Integer id;
@@ -20,8 +23,8 @@ public class Customer {
 
     public enum CustomerStatus {
         normal,
-        required_doctor_visit,
-        civid19_positive
+        analysis,
+        ill
     }
 
 }

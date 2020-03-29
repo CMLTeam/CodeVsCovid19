@@ -1,14 +1,16 @@
 package com.cmlteam.codevscovid19.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
+@AllArgsConstructor
 public class Doctor {
 
     private Integer id;
     private String name;
-    private Set<Integer> customers = new HashSet<>();
+    private List<Integer> customers = new ArrayList<>();
 }
