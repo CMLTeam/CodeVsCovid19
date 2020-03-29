@@ -138,7 +138,7 @@ post new booking (customer is gonna be hardcoded)
 
 --> url param
 ```
-    customer_id: integer //it can be also called by guard, but if null use hardcoded customer id?
+    customerId: integer //it can be also called by guard, but if null use hardcoded customer id?
     slotId: integer, // slot id 
 ```
 <-- ```200 OK```

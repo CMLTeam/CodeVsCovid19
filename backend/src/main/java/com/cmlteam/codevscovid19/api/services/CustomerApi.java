@@ -7,6 +7,8 @@ import com.cmlteam.codevscovid19.repo.CustomerRepository;
 import com.cmlteam.codevscovid19.repo.SlotRepository;
 import com.cmlteam.codevscovid19.repo.TargetRepository;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -48,5 +50,11 @@ public class CustomerApi {
                 .collect(Collectors.toList());
     }
 
-
+    @PostMapping("/bookings")
+    public void bookPlaceInQueue(
+            @RequestParam(name = "customerId") Integer customerId,
+            @RequestParam(name = "slotId") Integer slotId
+    ) {
+        customerRepository.addBookedSlot(customerId, slotId);
+    }
 }
