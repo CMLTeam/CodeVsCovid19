@@ -1,8 +1,19 @@
 <resources>
     <string name="app_name">Covid-app</string>
 
-    <!-- Bottom bar menu titles -->
-    <string name="bottom_bar_shops">Shops</string>
-    <string name="bottom_bar_profile">Profile</string>
+    <!-- Main menu strings -->
+    <string name="main_menu_title">Main menu</string>
+    <string name="stay_home">Stay at home</string>
+    <string name="text_main_menu">Ukraine is a country, situated in the centre of Europe. It has a long history, beautiful landscapes, interesting traditions and rich culture.</string>
+    <string name="terms_conditions">Terms and conditions</string>
+
+
+    <!-- Profile strings -->
+    <string name="profile_toolbar_title">Profile</string>
+
+
+    <!-- Supermarkets strings -->
+    <string name="supermarkets_toolbar_title">Supermarkets</string>
+
 
 </resources>
