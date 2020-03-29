@@ -9,25 +9,25 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class CustomerRepository {
 
-    private final Map<Integer, Customer> customerTable = new ConcurrentHashMap<>();
+    public final Map<Integer, Customer> customerTable = new ConcurrentHashMap<>();
 
-    private Collection<Customer> findAll(){
+    public Collection<Customer> findAll(){
         return customerTable.values();
     }
 
-    private void create(Customer customer) {
+    public void create(Customer customer) {
         Objects.requireNonNull(customer.getId());
         customerTable.put(customer.getId(), customer);
     }
-    private void update(Customer customer) {
+    public void update(Customer customer) {
         create(customer);
     }
 
-    private Customer findById(Integer id) {
+    public Customer findById(Integer id) {
         return customerTable.get(id);
     }
 
-    private List<Customer> findIn(Collection<Integer> ids) {
+    public List<Customer> findIn(Collection<Integer> ids) {
         Objects.requireNonNull(ids);
         List<Customer> result = new ArrayList<>();
         for (Integer id : ids) {
@@ -36,11 +36,11 @@ public class CustomerRepository {
         return result;
     }
 
-    private void putToCloseCommunication(Integer customerId, Integer closeCommunicationWith) {
+    public void putToCloseCommunication(Integer customerId, Integer closeCommunicationWith) {
         customerTable.get(customerId).getCloseCommunicationWith().add(closeCommunicationWith);
     }
 
-    private void addBookedSlot(Integer customerId, Integer slotId){
+    public void addBookedSlot(Integer customerId, Integer slotId){
         customerTable.get(customerId).getBookedSlots().add(slotId);
     }
 }
