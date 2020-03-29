@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+
+//TODO return doctor id and name with customer model
 @RestController
 public class CustomerApi {
 
@@ -57,6 +59,6 @@ public class CustomerApi {
     ) {
         customerRepository.addBookedSlot(customerId, slotId);
         Slot slot = slotRepository.findById(slotId);
-        slot.setFreeCapacity(slot.getFreeCapacity() -1);
+        slot.setFreeCapacity(slot.getFreeCapacity() - 1);
     }
 }

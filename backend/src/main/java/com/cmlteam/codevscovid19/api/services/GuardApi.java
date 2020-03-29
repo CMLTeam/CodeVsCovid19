@@ -37,7 +37,7 @@ public class GuardApi {
     }
 
     @PostMapping("/took-slot")
-    public void recordSlotUsed(@RequestBody TookSlotModel tookSlotModel){
+    public void recordSlotUsed(@RequestBody TookSlotModel tookSlotModel) {
 
         Customer customer = customerRepository.findById(tookSlotModel.getCustomerId());
         Slot slot = slotRepository.findById(tookSlotModel.getSlotId());
