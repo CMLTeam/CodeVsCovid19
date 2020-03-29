@@ -30,7 +30,8 @@ public class GuardApi {
         List<Slot> slotsByTarget = slotRepository.findByTargetId(targetId);
 
         List<Slot> slotsByTargetAndCustomer = slotsByTarget.stream()
-                .filter(slot -> customer.getBookedSlots().contains(slot.getId())).collect(Collectors.toList());
+                .filter(slot -> customer.getBookedSlots().contains(slot.getId()))
+                .collect(Collectors.toList());
 
         System.out.println(">>> " + slotsByTargetAndCustomer);
         return slotsByTargetAndCustomer;

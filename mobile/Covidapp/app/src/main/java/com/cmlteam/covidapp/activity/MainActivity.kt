@@ -1,73 +1,51 @@
 package com.cmlteam.covidapp.activities
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
+import android.view.View
+import android.widget.ImageButton
 import androidx.appcompat.app.ActionBar
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
+import com.cmlteam.covidapp.activity.ProfileActivity
+import com.cmlteam.covidapp.activity.SupermarketActivity
 import com.example.covid_app.R
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.cmlteam.covidapp.fragments.ProfileFragment
-import com.cmlteam.covidapp.fragments.ShopFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), View.OnClickListener {
 
-    lateinit var toolbar: ActionBar
+    private lateinit var toolbar: ActionBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        toolbar = supportActionBar!!
-        setupProfile()
+        setupToolbar()
 
-        val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_bar)
+        val profileButton = findViewById<ImageButton>(R.id.profile_button)
+        val superMarketsButton = findViewById<ImageButton>(R.id.supermarkets_button)
 
-        bottomNavigation.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.navigation_profile -> {
-                    setupProfile()
-                    return@setOnNavigationItemSelectedListener true
-                }
-                R.id.navigation_shops -> {
-                    setupShops()
-                    return@setOnNavigationItemSelectedListener true
-                }
-            }
-            false
-        }
+        profileButton.setOnClickListener(this)
+        superMarketsButton.setOnClickListener(this)
+
 
     }
 
+    override fun onClick(v: View?) {
+        when (v!!.id) {
+            R.id.profile_button -> startActivity(Intent(this, ProfileActivity::class.java))
+            R.id.supermarkets_button -> startActivity(Intent(this, SupermarketActivity::class.java))
+        }
+    }
 
     override fun onBackPressed() {
     }
 
-
-    private fun setupProfile(){
-        toolbar.title = applicationContext.getString(R.string.bottom_bar_profile)
-        val profileFragment = ProfileFragment.newInstance()
-        openFragment(profileFragment)
+    private fun setupToolbar() {
+        toolbar = supportActionBar!!
+        toolbar.title = getString(R.string.main_menu_title)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setDisplayShowHomeEnabled(true)
     }
-
-    private fun setupShops(){
-        toolbar.title = applicationContext.getString(R.string.bottom_bar_shops)
-        val shopsFragment = ShopFragment.newInstance()
-        openFragment(shopsFragment)
-    }
-
-
-    private fun openFragment(fragment: Fragment) {
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.container, fragment)
-        transaction.addToBackStack(null)
-        transaction.commitAllowingStateLoss()
-    }
-
-
-
-
-
-
 
 
 }

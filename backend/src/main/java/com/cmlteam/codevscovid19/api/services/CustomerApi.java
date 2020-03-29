@@ -32,12 +32,12 @@ public class CustomerApi {
 
     @GetMapping("/me")
     public Customer getCustomerPage() {
-        return customerRepository.findById(555); //hardcode: user_id
+        return customerRepository.findById(1001); //hardcode: user_id
     }
 
     @GetMapping("/slots")
     public List<TargetWithNestedSlots> getCustomerSlots() {
-        Customer customer = customerRepository.findById(555); //hardcode: user_id
+        Customer customer = customerRepository.findById(1001); //hardcode: user_id
 
         Map<Integer, List<Slot>> targetToSlots = customer.getBookedSlots().stream()
                 .map(slotRepository::findById)
@@ -54,9 +54,10 @@ public class CustomerApi {
 
     @PostMapping("/bookings")
     public void bookPlaceInQueue(
-            @RequestParam(name = "customerId") Integer customerId,
+            @RequestParam(name = "customerId", required = false) Integer customerIdParam,
             @RequestParam(name = "slotId") Integer slotId
     ) {
+        int customerId = customerIdParam == null ? 1001 : customerIdParam;
         customerRepository.addBookedSlot(customerId, slotId);
         Slot slot = slotRepository.findById(slotId);
         slot.setFreeCapacity(slot.getFreeCapacity() - 1);
