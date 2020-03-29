@@ -1,17 +1,14 @@
 import React from "react";
-import logo from "./COVID-19_World_Map.svg";
 import "./App.css";
 import useFetchCustomers from "./hooks/useFetchCustomers";
+import { CustomersTable } from "./CustomersTable";
 
 const App = () => {
   const [customers, useCustomers] = useFetchCustomers();
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Update Cool frontend for reduce covid spreading.</p>
-      </header>
+      <CustomersTable customers={customers} />
     </div>
   );
 };

@@ -1,1 +1,1 @@
-export type Status = '';
+export type Status = "normal" | "analysis" | "ill";

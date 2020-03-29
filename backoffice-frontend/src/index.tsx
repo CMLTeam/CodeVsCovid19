@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+export const BACKEND_API= "";
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
