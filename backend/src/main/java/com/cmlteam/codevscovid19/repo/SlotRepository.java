@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class SlotRepository {
 
-    private static Map<Integer, Slot> slotTable = new ConcurrentHashMap<>();
+    private Map<Integer, Slot> slotTable = new ConcurrentHashMap<>();
 
     private Collection<Slot> findAll() {
         return slotTable.values();

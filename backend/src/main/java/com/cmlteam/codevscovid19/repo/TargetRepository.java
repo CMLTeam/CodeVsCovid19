@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class TargetRepository {
 
-    private static Map<Integer, Target> targetTable = new ConcurrentHashMap<>();
+    private Map<Integer, Target> targetTable = new ConcurrentHashMap<>();
 
     private Collection<Target> findAll() {
         return targetTable.values();

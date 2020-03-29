@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class CustomerRepository {
 
-    private static final Map<Integer, Customer> customerTable = new ConcurrentHashMap<>();
+    private final Map<Integer, Customer> customerTable = new ConcurrentHashMap<>();
 
     private Collection<Customer> findAll(){
         return customerTable.values();

@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class DoctorRepository {
 
-    private static Map<Integer, Doctor> doctorTable = new ConcurrentHashMap<>();
+    private Map<Integer, Doctor> doctorTable = new ConcurrentHashMap<>();
 
     private void create(Doctor doctor) {
         Objects.requireNonNull(doctor.getId());
