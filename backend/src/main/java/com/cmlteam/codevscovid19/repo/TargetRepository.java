@@ -17,7 +17,7 @@ public class TargetRepository {
         return targetTable.values();
     }
 
-    Target findById(Integer id) {
+    public Target findById(Integer id) {
         return targetTable.get(id);
     }
 

@@ -17,7 +17,7 @@ public class SlotRepository {
         return slotTable.values();
     }
 
-    Slot findById(Integer id) {
+    public Slot findById(Integer id) {
         return slotTable.get(id);
     }
 
