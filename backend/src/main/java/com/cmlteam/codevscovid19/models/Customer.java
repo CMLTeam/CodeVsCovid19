@@ -16,6 +16,7 @@ public class Customer {
     private String address;
     private String pictureUrl;
     private List<Integer> closeCommunicationWith;
+    private List<Integer> bookedSlots;
 
     public enum CustomerStatus {
         normal,

@@ -2,6 +2,9 @@ package com.cmlteam.codevscovid19.models;
 
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 public class Target {
 
@@ -14,6 +17,7 @@ public class Target {
     private Double longitude;
     private String workingTime;
     private String pictureUrl;
+    private List<Integer> slots = new ArrayList<>();
 
     public enum TargetType {
         shop,
