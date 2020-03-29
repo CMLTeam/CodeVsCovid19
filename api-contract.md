@@ -102,7 +102,7 @@ GET /slots/
 
 Get customer's booked slots 
 
-# vvv Consider return same DTO as for target, but put in slots list only slots booked by this customer
+//vvv Consider return same DTO as for target, but put in slots list only slots booked by this customer
 
 <--- json
 
