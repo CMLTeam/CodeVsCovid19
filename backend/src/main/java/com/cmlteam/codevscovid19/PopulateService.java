@@ -68,6 +68,7 @@ public class PopulateService {
 
         doctorRepository.create(doctor1main);
 
+        populateTargetsWithSlots();
     }
 
     private void populateTargetsWithSlots() {
