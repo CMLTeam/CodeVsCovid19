@@ -58,12 +58,26 @@ public class PopulateService {
                 new ArrayList<>()
         );
 
+        Customer customer2main = new Customer(
+          1003,
+          "+123567653895696",
+          "ID-5344354",
+          "John Doe Younger",
+          250,
+          Customer.CustomerStatus.ill,
+          "Prenzlauer Allee 248-251, 10405 Berlin, Germany",
+          "https://pickaface.net/gallery/avatar/unr_mmem_200330_0404_2o3l89n.png",
+          new ArrayList<>(Arrays.asList(1002)),
+          new ArrayList<>()
+        );
+
         customerRepository.create(customer1main);
+        customerRepository.create(customer2main);
 
         Doctor doctor1main = new Doctor(
                 2001,
                 "Dr. Michael Bale",
-                new ArrayList<>(Arrays.asList(1001))
+                new ArrayList<>(Arrays.asList(1001, 1003))
         );
 
         doctorRepository.create(doctor1main);
