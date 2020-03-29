@@ -1,4 +1,23 @@
 
+
+## Test data
+
+To see detailed information, call correspondent API endpoints.
+
+#### Customers:
+1001 - John Doe, 1002 - Jennifer Doe (both related to each other)
+
+#### Doctors: 
+2001 - watching for 1001 John Doe
+
+#### Slots: 
+3001, 3002, 3003, 3004, 3005, 3006
+    
+#### Targets: 
+4001 (slots: 3001 3002 3003) ,
+
+4002 (slots: 3004 3005 3006)
+    
 ### Endpoints for menu
 
 GET /targets 
