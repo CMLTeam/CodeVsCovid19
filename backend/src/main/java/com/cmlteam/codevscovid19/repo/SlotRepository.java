@@ -1,11 +1,11 @@
 package com.cmlteam.codevscovid19.repo;
 
 import com.cmlteam.codevscovid19.models.Slot;
-import com.cmlteam.codevscovid19.models.Slot;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 @Component
 public class SlotRepository {
@@ -36,5 +36,10 @@ public class SlotRepository {
             result.add(slotTable.get(id));
         }
         return result;
+    }
+
+    public List<Slot> findByTargetId(Integer targetId) {
+        Objects.requireNonNull(targetId);
+        return slotTable.values().stream().filter(slot -> targetId.equals(slot.getTargetId())).collect(Collectors.toList());
     }
 }
