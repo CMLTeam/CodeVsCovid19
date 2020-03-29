@@ -2,10 +2,10 @@ import { Customer } from "../dto";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BACKEND_API } from "../index";
-import {sleep} from "./utils";
+import { sleep } from "./utils";
 
 const getDummyData = async (): Promise<Customer[]> => {
-  await sleep(2);
+  await sleep(1);
   return [
     {
       id: 546,
@@ -15,7 +15,7 @@ const getDummyData = async (): Promise<Customer[]> => {
       illnessRate: 0,
       address: "Third planet from Sun",
       status: "ill",
-      pictureUrl: "url",
+      pictureUrl: "/546_profile_photo.jpg",
       closeCommunicationWith: [547],
     },
     {
@@ -26,7 +26,6 @@ const getDummyData = async (): Promise<Customer[]> => {
       illnessRate: 356,
       address: "Third planet from Sun",
       status: "analysis",
-      pictureUrl: "url",
       closeCommunicationWith: [546],
     },
     {
@@ -37,7 +36,6 @@ const getDummyData = async (): Promise<Customer[]> => {
       illnessRate: 1000,
       address: "Second planet from Sun",
       status: "normal",
-      pictureUrl: "url",
       closeCommunicationWith: [],
     },
   ];
@@ -50,7 +48,8 @@ const useCustomers = (): [Customer[], () => void] => {
   useEffect(() => {
     (async () => {
       // const data = (await axios.get(`${BACKEND_API}/doctors/42/customers}`)).data;
-      const data = (await getDummyData());
+      const data = await getDummyData();
+      console.log("Customers updated");
       setCustomers(data);
     })();
   }, [updateCustomers]);

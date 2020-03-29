@@ -37,10 +37,15 @@ export const CustomersTable = (props: CustomersTableProps) => {
   const [openForm, setOpenForm] = useState<boolean>(false);
   const [currentCustomer, setCurrentCustomer] = useState<Customer | null>(null);
 
-  const handleClose = () => {
+  const handleUpdate = () => {
     setCurrentCustomer(null);
     setOpenForm(false);
     setCustomers();
+  };
+
+  const handleCancel = () => {
+    setCurrentCustomer(null);
+    setOpenForm(false);
   };
 
   const handleOpenCustomerForm = (customer: Customer) => {
@@ -96,10 +101,12 @@ export const CustomersTable = (props: CustomersTableProps) => {
           ))}
         </TableBody>
       </Table>
+
       <CustomerFormModal
-        closeForm={handleClose}
+        update={handleUpdate}
         isOpen={openForm}
         customer={currentCustomer}
+        cancel={handleCancel}
       />
     </TableContainer>
   );

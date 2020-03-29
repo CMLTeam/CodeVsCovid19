@@ -8,6 +8,6 @@ export interface Customer {
     illnessRate: number, // from 0 to 1000
     status: Status, // enum: [normal, analysis, ill]
     address: string, // just to print
-    pictureUrl: string, // to put it in <img> tag
+    pictureUrl?: string, // to put it in <img> tag
     closeCommunicationWith: number[] // ids of customers with whom customer relate
 }
