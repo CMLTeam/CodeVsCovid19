@@ -50,8 +50,8 @@ export const CustomerFormModal = (props: CustomerFormProps) => {
 
   const handleUpdate = async () => {
     console.log("Start to update status");
-    // await axios.put(`${BACKEND_API}/customers/${props.customer?.id}/status`, {status});
-    await sleep(2);
+    await axios.put(`${BACKEND_API}/customers/${props.customer?.id}/status`, {status});
+    // await sleep(2);
     console.log("Status updated to", status);
     props.update();
   };

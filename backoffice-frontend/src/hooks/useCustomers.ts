@@ -47,9 +47,9 @@ const useCustomers = (): [Customer[], () => void] => {
 
   useEffect(() => {
     (async () => {
-      // const data = (await axios.get(`${BACKEND_API}/doctors/42/customers}`)).data;
-      const data = await getDummyData();
-      console.log("Customers updated");
+      const { data } = await axios.get(`${BACKEND_API}/doctors/2001/customers`);
+      // const data = await getDummyData();
+      console.log("Customers updated", data);
       setCustomers(data);
     })();
   }, [updateCustomers]);
