@@ -4,10 +4,8 @@ import com.cmlteam.codevscovid19.models.Customer;
 import com.cmlteam.codevscovid19.models.Slot;
 import com.cmlteam.codevscovid19.repo.CustomerRepository;
 import com.cmlteam.codevscovid19.repo.SlotRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.Data;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,5 +34,19 @@ public class GuardApi {
 
         System.out.println(">>> " + slotsByTargetAndCustomer);
         return slotsByTargetAndCustomer;
+    }
+
+    @PostMapping("/took-slot")
+    public void recordSlotUsed(@RequestBody TookSlotModel tookSlotModel){
+
+        Customer customer = customerRepository.findById(tookSlotModel.getCustomerId());
+        Slot slot = slotRepository.findById(tookSlotModel.getSlotId());
+        // TODO ?? where to record this action
+    }
+
+    @Data
+    private static class TookSlotModel {
+        private Integer customerId;
+        private Integer slotId;
     }
 }

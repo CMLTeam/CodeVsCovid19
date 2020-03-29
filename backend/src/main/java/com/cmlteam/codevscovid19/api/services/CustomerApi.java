@@ -56,5 +56,7 @@ public class CustomerApi {
             @RequestParam(name = "slotId") Integer slotId
     ) {
         customerRepository.addBookedSlot(customerId, slotId);
+        Slot slot = slotRepository.findById(slotId);
+        slot.setFreeCapacity(slot.getFreeCapacity() -1);
     }
 }
