@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Customer } from "./dto";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -11,6 +11,8 @@ import Paper from "@material-ui/core/Paper";
 import { Rating } from "@material-ui/lab";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import { getStatusColor } from "./dto/Status";
+import { CustomerFormModal } from "./CustomerFormModal";
+import useCustomers from "./hooks/useCustomers";
 
 const useStyles = makeStyles({
   table: {
@@ -27,12 +29,24 @@ const StyledRating = withStyles({
   },
 })(Rating);
 
-interface CustomersTableProps {
-  customers: Customer[];
-}
+interface CustomersTableProps {}
 
 export const CustomersTable = (props: CustomersTableProps) => {
   const classes = useStyles();
+  const [customers, setCustomers] = useCustomers();
+  const [openForm, setOpenForm] = useState<boolean>(false);
+  const [currentCustomer, setCurrentCustomer] = useState<Customer | null>(null);
+
+  const handleClose = () => {
+    setCurrentCustomer(null);
+    setOpenForm(false);
+    setCustomers();
+  };
+
+  const handleOpenCustomerForm = (customer: Customer) => {
+    setCurrentCustomer(customer);
+    setOpenForm(true);
+  };
 
   return (
     <TableContainer component={Paper}>
@@ -47,8 +61,12 @@ export const CustomersTable = (props: CustomersTableProps) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {props.customers.map((customer) => (
-            <TableRow key={customer.id} hover>
+          {customers.map((customer) => (
+            <TableRow
+              key={customer.id}
+              hover
+              onClick={() => handleOpenCustomerForm(customer)}
+            >
               <TableCell align="left">{customer.documentId}</TableCell>
               <TableCell align="left" title={customer.name}>
                 {customer.name}
@@ -78,6 +96,11 @@ export const CustomersTable = (props: CustomersTableProps) => {
           ))}
         </TableBody>
       </Table>
+      <CustomerFormModal
+        closeForm={handleClose}
+        isOpen={openForm}
+        customer={currentCustomer}
+      />
     </TableContainer>
   );
 };

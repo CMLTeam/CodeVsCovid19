@@ -43,7 +43,7 @@ const getDummyData = async (): Promise<Customer[]> => {
   ];
 };
 
-const useFetchCustomers = (): [Customer[], () => void] => {
+const useCustomers = (): [Customer[], () => void] => {
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [updateCustomers, setUpdate] = useState({});
 
@@ -64,4 +64,4 @@ const useFetchCustomers = (): [Customer[], () => void] => {
   ];
 };
 
-export default useFetchCustomers;
+export default useCustomers;
