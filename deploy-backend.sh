@@ -2,7 +2,7 @@
 
 set -e
 
-SERVER_SSH=tamerlan@cmlteam.com
+SERVER_SSH=samkorzin@cmlteam.com
 PORT=8099
 JAVA_XMX=700
 JAR_NAME="codevscovid19-0.0.1-SNAPSHOT.jar"
