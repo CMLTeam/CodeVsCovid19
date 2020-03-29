@@ -43,14 +43,10 @@ backend assume that user always the same, auth not required.
 ]
 ```
 
-GET /targets/slots/
+GET /targets/{target_id}/slots
 
 get slots by target id
 
---> url params
-```   
-    targetId: integer
-```
 <-- json
 ```
 {
