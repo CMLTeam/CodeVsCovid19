@@ -4,13 +4,12 @@ import com.cmlteam.codevscovid19.models.Customer;
 import com.cmlteam.codevscovid19.models.Doctor;
 import com.cmlteam.codevscovid19.repo.CustomerRepository;
 import com.cmlteam.codevscovid19.repo.DoctorRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import lombok.Data;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
 public class DoctorApi {
 
     private final DoctorRepository doctorRepository;
@@ -41,11 +40,12 @@ public class DoctorApi {
     @PutMapping("/customers/{customer_id}/status")
     public void changeCustomerStatus(@PathVariable(name = "customer_id") Integer customerId,
                                      @RequestBody ChangeStatusModel model) {
-        customerRepository.findById(customerId).setStatus(model.status);
+        customerRepository.findById(customerId).setStatus(Customer.CustomerStatus.valueOf(model.status));
     }
 
+    @Data
     private static class ChangeStatusModel {
-        Customer.CustomerStatus status;
+        String status;
     }
 
 }
