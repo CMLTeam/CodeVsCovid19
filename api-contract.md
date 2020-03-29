@@ -25,8 +25,10 @@ backend assume that user always the same, auth not required.
         longitude: float,
         workingTime: "string", // when target(e.g. shop) is working
         pictureUrl: string, // to put it in <img> tag
-        slotsPreviews: [
+        slots: [
             {
+                slotId: integer,
+                asString: string,
                 startDate: datetime, // ISO8601, to sort by,
                 endDate: datetime, // ISO8601, end date to maybe sort by
                 freeCapacity: integer // how many people may join slot
@@ -51,7 +53,7 @@ get slots by target id
 ```
 <-- json
 ```
-[
+{
     target: {
         id: integer, 
         type: string // enum: ["shop", "pharmacy", ...]
@@ -63,9 +65,11 @@ get slots by target id
         longitude: float,
         workingTime: "string", // when target(e.g. shop) is working
         pictureUrl: string, // to put it in <img> tag
+        slots: [], //??
     },
     slots: [
         {
+        slotId: integer,
         asString: string, //representation like string: "08.00 - 10.30 AM"
         startDate: datetime, // ISO8601, start date to sort by 
         endDate: datetime, // ISO8601, end date to maybe sort by
@@ -73,8 +77,10 @@ get slots by target id
         },
         ...
     ]
-]
+}
 ```
+
+# ^^^Consider putting slots in target - same response dto as for all targets
 
 ## Personal customer's endpoints
 
@@ -101,18 +107,37 @@ GET /slots/
 
 Get customer's booked slots 
 
-<-- json
+# vvv Consider return same DTO as for target, but put in slots list only slots booked by this customer
+
+<--- json
+
 ```
 [
-    {
-        targetName: string,
-        asString: string, //representation like string: "08.00 - 10.30 AM"
-        startDate: datetime, // ISO8601, start date to sort by 
-        endDate: datetime, // ISO8601, end date to maybe sort by
-        freeCapacity: integer // how many people may join slot  
-    }
+    target: {
+        id: integer, 
+        type: string // enum: ["shop", "pharmacy", ...]
+        name: string,
+        distance: integer, // distance in meters from you,
+        maxPeopleCapacity: integer,
+        address: string,
+        latitude: float,
+        longitude: float,
+        workingTime: "string", // when target(e.g. shop) is working
+        pictureUrl: string, // to put it in <img> tag
+        slots: [
+            {
+            slotId: integer,
+            asString: string, //representation like string: "08.00 - 10.30 AM"
+            startDate: datetime, // ISO8601, start date to sort by 
+            endDate: datetime, // ISO8601, end date to maybe sort by
+            freeCapacity: integer // how many people may join slot  
+            },
+            ...
+        ],
+    },
 ]
 ```
+
 
 POST /bookings
 
@@ -120,6 +145,7 @@ post new booking (customer is gonna be hardcoded)
 
 --> url param
 ```
+    customer_id: integer //it can be also called by guard, but if null use hardcoded customer id?
     slotId: integer, // slot id 
 ```
 <-- ```200 OK```
@@ -133,13 +159,15 @@ for security guard on target's entrance
 <--
 ```
    [
-       {
-           asString: string, //representation like string: "08.00 - 10.30 AM"
-           startDate: datetime, // ISO8601, start date to sort by 
-           endDate: datetime, // ISO8601, end date to maybe sort by
-           freeCapacity: integer // how many people may join slot  
-       }
-   ]
+        {
+        slotId: integer,
+        asString: string, //representation like string: "08.00 - 10.30 AM"
+        startDate: datetime, // ISO8601, start date to sort by 
+        endDate: datetime, // ISO8601, end date to maybe sort by
+        freeCapacity: integer // how many people may join slot  
+        },
+        ...
+    ]
 ```
 
 POST /took-slot
@@ -150,7 +178,7 @@ Web-Hook to inform backend that customer used current slot
 ```
 {
     customerId : integer,
-    targetId : integer
+    slotId: integer,
 }
 ```
 <-- ``` 200 ```
