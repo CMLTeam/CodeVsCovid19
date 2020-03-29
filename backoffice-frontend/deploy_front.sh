@@ -7,6 +7,7 @@ rm -rf ./build/
 ssh tamerlan@cmlteam.com 'rm -rf covid_backoffice/build/*'
 
 # build and copy resources
+npm i
 npm run-script build
 scp -r ./build/ tamerlan@cmlteam.com:./covid_backoffice
 

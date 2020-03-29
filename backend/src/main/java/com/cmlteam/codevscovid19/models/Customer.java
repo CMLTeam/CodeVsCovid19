@@ -20,8 +20,8 @@ public class Customer {
 
     public enum CustomerStatus {
         normal,
-        required_doctor_visit,
-        civid19_positive
+        analysis,
+        ill
     }
 
 }

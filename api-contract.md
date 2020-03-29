@@ -200,7 +200,7 @@ Authorization for doctor is not required, we assume here is only one doctor
         documentId: string,//some sort of ID for government, acquired via BankID (potentially)
         name: string, // first last names
         illnessRate: integer, // from 0 to 1000 
-        status: string, // enum: [normal, required_doctor_visit, civid19_positive]
+        status: string, // enum: [normal, analysis, ill]
         address: string, // just to print
         pictureUrl: string, // to put it in <img> tag
         closeCommunicationWith: interger[] // ids of customers with whom customer relate
