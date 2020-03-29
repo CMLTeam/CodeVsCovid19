@@ -9,13 +9,14 @@ backend assume that user always the same, auth not required.
 ```     
     locationLatitude: integer // optional(default:customer's address from db)
     locationLongitude: integer // optional(default:customer's address from db)
-    targetType: string // optional(default:"shop") // enum: ["shop", "pharmacy", ...]
+    type: string // optional(default:"shop") // enum: ["shop", "pharmacy", ...]
 ```
 <-- json
 ```
 [
     {
         id: integer, // slots could be fetched by this id as targetId
+        type: string // enum: ["shop", "pharmacy", ...]
         name: string,
         distance: integer, // distance in meters from you,
         maxPeopleCapacity: integer, // how many people curr. target could initially handle
@@ -53,6 +54,7 @@ get slots by target id
 [
     target: {
         id: integer, 
+        type: string // enum: ["shop", "pharmacy", ...]
         name: string,
         distance: integer, // distance in meters from you,
         maxPeopleCapacity: integer,
@@ -173,7 +175,7 @@ Authorization for doctor is not required, we assume here is only one doctor
     status: string, // enum: [normal, required_doctor_visit, civid19_positive]
     address: string, // just to print
     pictureUrl: string, // to put it in <img> tag
-    closeСommunicationWith: interger[] // ids of customers with whom customer relate
+    closeCommunicationWith: interger[] // ids of customers with whom customer relate
 }
 ```
 
