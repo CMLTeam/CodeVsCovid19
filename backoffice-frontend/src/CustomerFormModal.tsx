@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect, useState} from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import axios from "axios";
 import {
   Button,
@@ -16,17 +16,17 @@ import {
 import { Customer, Status } from "./dto";
 import profile from "./assets/profile.jpeg";
 import { makeStyles } from "@material-ui/core/styles";
-import {sleep} from "./hooks/utils";
-import {BACKEND_API} from "./index";
+import { sleep } from "./hooks/utils";
+import { BACKEND_API } from "./index";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    container: {
-      display: "flex",
-      flexWrap: "wrap",
+    dialog: {
+      minWidth: "300px",
+      margin: "5px",
     },
-    formControl: {
-      margin: theme.spacing(1),
+    content: {
+      margin: theme.spacing(3, 0),
       minWidth: 120,
     },
   })
@@ -41,8 +41,10 @@ interface CustomerFormProps {
 
 export const CustomerFormModal = (props: CustomerFormProps) => {
   const classes = useStyles();
-  const [status, setStatus] = useState<Status | undefined>(props.customer?.status);
-  useEffect(()=>{
+  const [status, setStatus] = useState<Status | undefined>(
+    props.customer?.status
+  );
+  useEffect(() => {
     setStatus(props.customer?.status);
   }, [props.customer]);
 
@@ -55,7 +57,10 @@ export const CustomerFormModal = (props: CustomerFormProps) => {
   };
 
   if (!props.customer) return null;
-  const photoStyle = { maxHeight: "25vw", maxWidth: "20vh" };
+  const photoStyle = {
+    maxHeight: "25vw",
+    maxWidth: "20vh",
+  };
   const handleChangeStatus = (
     selectValue: ChangeEvent<{ name?: string; value: unknown }>
   ) => {
@@ -70,7 +75,7 @@ export const CustomerFormModal = (props: CustomerFormProps) => {
       disableEscapeKeyDown
     >
       <DialogTitle id="form-dialog-title">{props.customer.name}</DialogTitle>
-      <DialogContent>
+      <DialogContent className={classes.dialog}>
         {props.customer.pictureUrl ? (
           <img
             style={photoStyle}
@@ -84,29 +89,29 @@ export const CustomerFormModal = (props: CustomerFormProps) => {
             alt="Profile photo placeholder"
           />
         )}
-        <DialogContent>
-          <div>Address</div>
+        <div className={classes.content}>
+          <div style={{ textDecoration: "underline" }}>Address</div>
           <div>{props.customer?.address}</div>
-          <div>Phone</div>
+        </div>
+        <div className={classes.content}>
+          <div style={{ textDecoration: "underline" }}>Phone</div>
           <div>{props.customer?.phoneNumber}</div>
-        </DialogContent>
-        <FormControl className={classes.formControl}>
-          <form className={classes.container}>
-            <FormControl className={classes.formControl}>
-              <InputLabel>Status</InputLabel>
-              <Select
-                native
-                value={status}
-                onChange={handleChangeStatus}
-                input={<Input />}
-              >
-                <option value={"normal"}>NORMAL</option>
-                <option value={"analysis"}>ANALYSIS</option>
-                <option value={"ill"}>ILL</option>
-              </Select>
-            </FormControl>
-          </form>
-        </FormControl>
+        </div>
+        <div>
+          <FormControl className={classes.content}>
+            <InputLabel>Status</InputLabel>
+            <Select
+              native
+              value={status}
+              onChange={handleChangeStatus}
+              input={<Input />}
+            >
+              <option value={"normal"}>NORMAL</option>
+              <option value={"analysis"}>ANALYSIS</option>
+              <option value={"ill"}>ILL</option>
+            </Select>
+          </FormControl>
+        </div>
       </DialogContent>
       <DialogActions>
         <Button onClick={props.cancel} color="primary">
