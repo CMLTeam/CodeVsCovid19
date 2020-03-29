@@ -44,11 +44,11 @@ public class TargetApi {
     }
 
     @GetMapping("/targets/{target_id}/slots")
-    public TargetWithSlots getSlotsByTarget(
+    public TargetWithNestedSlots getSlotsByTarget(
             @PathVariable(required = true, name = "target_id") Integer targetId) {
         List<Slot> slots = slotRepository.findByTargetId(targetId);
         Target target = targetRepository.findById(targetId);
-        return new TargetWithSlots(target, slots);
+        return new TargetWithNestedSlots(target, slots);
     }
 
 }

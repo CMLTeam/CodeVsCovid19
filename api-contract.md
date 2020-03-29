@@ -45,12 +45,12 @@ backend assume that user always the same, auth not required.
 
 GET /targets/{target_id}/slots
 
-get slots by target id
+get slots by target id. Returned slots are grouped by target id.
 
 <-- json
 ```
-{
-    target: {
+[
+    {
         id: integer, 
         type: string // enum: ["shop", "pharmacy", ...]
         name: string,
@@ -61,21 +61,20 @@ get slots by target id
         longitude: float,
         workingTime: "string", // when target(e.g. shop) is working
         pictureUrl: string, // to put it in <img> tag
+        slots: [
+            {
+            slotId: integer,
+            asString: string, //representation like string: "08.00 - 10.30 AM"
+            startDate: datetime, // ISO8601, start date to sort by 
+            endDate: datetime, // ISO8601, end date to maybe sort by
+            freeCapacity: integer // how many people may join slot  
+            },
+            ...
+        ]
     },
-    slots: [
-        {
-        slotId: integer,
-        asString: string, //representation like string: "08.00 - 10.30 AM"
-        startDate: datetime, // ISO8601, start date to sort by 
-        endDate: datetime, // ISO8601, end date to maybe sort by
-        freeCapacity: integer // how many people may join slot  
-        },
-        ...
-    ]
-}
+    ...
+]
 ```
-
-# ^^^Consider putting slots in target - same response dto as for all targets
 
 ## Personal customer's endpoints
 
@@ -102,13 +101,11 @@ GET /slots/
 
 Get customer's booked slots 
 
-//vvv Consider return same DTO as for target, but put in slots list only slots booked by this customer
-
 <--- json
 
 ```
 [
-    target: {
+    {
         id: integer, 
         type: string // enum: ["shop", "pharmacy", ...]
         name: string,
@@ -128,8 +125,9 @@ Get customer's booked slots
             freeCapacity: integer // how many people may join slot  
             },
             ...
-        ],
+        ]
     },
+    ...
 ]
 ```
 
