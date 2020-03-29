@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "./COVID-19_World_Map.svg";
+import logo from "./assets/COVID-19_World_Map.svg";
 
 interface HeaderProps {}
 
