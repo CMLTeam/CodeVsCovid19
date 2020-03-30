@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_profile"
+        android:enabled="true"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title="@string/bottom_bar_profile" />
+    <item
+        android:id="@+id/navigation_qr"
+        android:enabled="true"
+        android:icon="@drawable/qr_code_sample"
+        android:title="@string/bottom_bar_QR" />
+</menu>
