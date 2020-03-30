@@ -51,6 +51,10 @@ class CustomerActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onBackPressed() {
+        finish()
+    }
+
 
     private fun setupProfileFragment() {
         toolbar.title = getString(R.string.bottom_bar_profile)
