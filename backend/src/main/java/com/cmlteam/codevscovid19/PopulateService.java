@@ -135,7 +135,7 @@ public class PopulateService {
       "Prenzlauer Allee 242, Berlin, Germany",
       100.0,
       100.0,
-      "9.00 AM - 9.00 PM.",
+      "9.00 - 20.00",
       "https://cdn.icon-icons.com/icons2/1706/PNG/512/3986701-online-shop-store-store-icon_112278.png",
       new ArrayList<>(Arrays.asList(3001, 3002, 3003, 3004, 3005, 3006))
     );
@@ -170,7 +170,7 @@ public class PopulateService {
     );
 
     Slot slot4target1 = new Slot(
-      3001,
+      3004,
       4001,
       "15.00 - 17.30",
       LocalDateTime.of(2020, 5, 1, 15, 0, 0),
@@ -179,7 +179,7 @@ public class PopulateService {
     );
 
     Slot slot5target1 = new Slot(
-      3001,
+      3005,
       4001,
       "17.30 - 19.00",
       LocalDateTime.of(2020, 5, 1, 17, 30, 0),
@@ -188,7 +188,7 @@ public class PopulateService {
     );
 
     Slot slot6target1 = new Slot(
-      3002,
+      3006,
       4001,
       "19.00 - 20.00",
       LocalDateTime.of(2020, 5, 1, 19, 0, 0),
@@ -211,7 +211,7 @@ public class PopulateService {
       "Brunnenstraße 197, Berlin, Germany",
       200.0,
       200.0,
-      "8.00 AM - 9.00 PM.",
+      "9.00 - 17.00",
       "https://cdn.icon-icons.com/icons2/1706/PNG/512/3986701-online-shop-store-store-icon_112278.png",
       new ArrayList<>(Arrays.asList(3010, 3011, 3012, 3013, 3014, 3015))
     );
