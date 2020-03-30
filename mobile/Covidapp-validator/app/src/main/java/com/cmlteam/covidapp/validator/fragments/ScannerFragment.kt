@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.Toast
 import com.cmlteam.covidapp.activities.MainActivity
@@ -21,16 +22,26 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 
 class ScannerFragment: androidx.fragment.app.Fragment(), ZXingScannerView.ResultHandler {
+    override fun handleResult(p0: Result?) {
+
+    }
 
     private lateinit var qrView: ZXingScannerView
     private lateinit var listener: QrScannerListener
     lateinit var progressBar: ProgressBar
+    lateinit var scanButton: Button
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater!!.inflate(R.layout.fragment_scan, container, false)
         qrView = view.findViewById(R.id.qrReaderView)
         progressBar = view.findViewById(R.id.progress_bar)
+        scanButton = view.findViewById(R.id.scan_button)
         restartCamera()
+
+        scanButton.setOnClickListener{
+            handleResult(1001)
+        }
+
         return view
     }
 
@@ -56,10 +67,10 @@ class ScannerFragment: androidx.fragment.app.Fragment(), ZXingScannerView.Result
         progressBar.visibility = View.GONE
     }
 
-    override fun handleResult(p0: Result?) {
-        val qrResult = p0 ?: return
-        val resultText = qrResult.text
-        val userId = Integer.parseInt(resultText)
+    fun handleResult(userId: Int) {
+        //val qrResult = p0 ?: return
+        //val resultText = qrResult.text
+        //val userId = Integer.parseInt(resultText)
         showLoading()
         val mainActivity = activity as MainActivity
 
@@ -76,13 +87,13 @@ class ScannerFragment: androidx.fragment.app.Fragment(), ZXingScannerView.Result
             ) {
                 println("User slots received")
                 val userSlots = response.body()
-                val upcomingSlots = userSlots?.filter {slot ->
-                    val now = LocalDateTime.now()
-                    val slotDateTime = LocalDateTime.parse(slot.startDate)
-                    slotDateTime.toLocalDate() === now.toLocalDate() &&
-                            (slotDateTime.hour*60 + slotDateTime.minute - now.hour*60 - now.minute > -30)
-                }
-                mainActivity.showReservationCheckResult(userId, upcomingSlots)
+//                val upcomingSlots = userSlots?.filter {slot ->
+//                    val now = LocalDateTime.now()
+//                    val slotDateTime = LocalDateTime.parse(slot.startDate)
+//                    slotDateTime.toLocalDate() === now.toLocalDate() &&
+//                            (slotDateTime.hour*60 + slotDateTime.minute - now.hour*60 - now.minute > -30)
+//                }
+                mainActivity.showReservationCheckResult(userId, userSlots)
                 hideLoading()
             }
         })

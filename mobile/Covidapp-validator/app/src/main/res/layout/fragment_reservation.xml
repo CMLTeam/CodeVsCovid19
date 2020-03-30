@@ -15,7 +15,8 @@
         android:gravity="center"
         android:text="Reservation not found"
         android:textColor="#E91E63"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/reservation_found"
@@ -32,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Mon, 30 Mar 2:30pm - 3:00pm"
+        android:text="Mon, 30 Apr 14:00 - 16:00"
         android:textSize="18sp" />
 
     <Button
