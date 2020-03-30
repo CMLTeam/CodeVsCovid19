@@ -2,7 +2,6 @@ package com.cmlteam.codevscovid19.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
@@ -15,16 +14,18 @@ public class Customer {
     private String documentId;
     private String name;
     private long illnessRate;
-    private CustomerStatus status = CustomerStatus.normal;
+    private CustomerStatus status = CustomerStatus.recovered;
     private String address;
     private String pictureUrl;
     private List<Integer> closeCommunicationWith;
     private List<Integer> bookedSlots;
 
     public enum CustomerStatus {
-        normal,
-        analysis,
-        ill
+        recovered,
+        suspected,
+        negative,
+        dead,
+        positive
     }
 
 }
