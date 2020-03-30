@@ -184,7 +184,7 @@ public class PopulateService {
       "17.30 - 19.00",
       LocalDateTime.of(2020, 5, 1, 17, 30, 0),
       LocalDateTime.of(2020, 5, 1, 19, 0, 0),
-      24
+      28
     );
 
     Slot slot6target1 = new Slot(
@@ -193,7 +193,7 @@ public class PopulateService {
       "19.00 - 20.00",
       LocalDateTime.of(2020, 5, 1, 19, 0, 0),
       LocalDateTime.of(2020, 5, 1, 20, 0, 0),
-      34
+      31
     );
 
     slotRepository.create(slot1target1);
@@ -269,7 +269,7 @@ public class PopulateService {
             "16.00 - 17.00",
             LocalDateTime.of(2020, 5, 1, 16, 0, 0),
             LocalDateTime.of(2020, 5, 1, 17, 0, 0),
-            24
+            23
     );
 
     slotRepository.create(slot1target2);
