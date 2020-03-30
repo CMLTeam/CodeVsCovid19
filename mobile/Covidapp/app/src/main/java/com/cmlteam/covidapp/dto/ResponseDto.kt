@@ -13,20 +13,22 @@ data class Customer(
 
 data class Target(
     val id: Int, // slots could be fetched by this id as targetId
+    val type: String,
     val name: String,
     val distance: Int, // distance in meters from you,
     val maxPeopleCapacity: Int, // how many people curr. target could initially handle
     val address: String,
     val latitude: Float,
     val longitude: Float,
-    val workHours: String,
+    val workingTime: String,
     val pictureUrl: String?, // to put it in <img> tag
     val slots: List<Slot>
 )
 
 data class Slot(
+    val id: Int,
     val targetId: Int,
-    val description: String, //string representation
+    val asString: String, //string representation
     val startDate: String, // ISO8601 datetime , to sort by,
     val endDate: String, // ISO8601, end date to maybe sort by
     val freeCapacity: Int // how many people may join slot

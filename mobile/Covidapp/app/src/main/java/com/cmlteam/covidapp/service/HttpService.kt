@@ -1,6 +1,8 @@
 package com.example.demoappdrawermenu.service
 
 import com.cmlteam.covidapp.dto.BookSlotRequest
+import com.cmlteam.covidapp.dto.Slot
+import com.cmlteam.covidapp.dto.Target
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -14,34 +16,36 @@ interface HttpService {
 
     @GET("/customers/{id}")
     fun getUser(
-        @Path("id") id: String
+        @Path("id") id: Int
     ): Call<Any>//User>
 
 
     @GET("/targets")
     fun getPlaces(
-    ): Call<Any>//List<Target>
+    ): Call<List<Target>>
 
 
-    @GET("/target/slots")
+    @GET("/targets/{target_id}/slots")
     fun getPlaceSlots(
-        @Query("targetId") targetId: String
-    ) : Call<Any> //Target  - with slots
+        @Path("target_id") targetId: Int
+    ) : Call<Target>
 
     @POST("/bookings")
     fun reserveSlot(
-        @Body bookSlotRequest: BookSlotRequest  // {customer_id, slot_id? or slot_date_time?}
+        @Query("customerId") userId: Int,
+        @Query("slotId") slotId: Int
+        //@Body bookSlotRequest: BookSlotRequest  // {customer_id, slot_id? or slot_date_time?}
     ): Call<Void>
 
     @GET("/bookings")
-    fun getReservedSlots(): Call<Any>//List<Target>
+    fun getReservedSlots(): Call<List<Target>>
 
     /* Returns ReservationValidationResult - {validated: true/false; reservations: list of reservations} */
     @GET("/customers/{customer_id}/bookings/{target_id}")  //for a security app
     fun getSlotReservations(
         @Path("customer_id") userId: String,
         @Path("target_id") placeId: String
-    ): Call<Any>//List<Slot>
+    ): Call<List<Slot>>
 
     @POST("/confirm")
     fun confirmSlot(
