@@ -38,9 +38,9 @@ sudo kill -9 $PORT;
 fi;
 
 echo "staring..."
-java \
+nohup java \
     -Xmx'${JAVA_XMX}'M \
     -Xms'${JAVA_XMX}'M \
     -jar covid19hackathon/'$JAR_NAME' &> ~/codeVsCivid19.log &
-#tail -f ~/codeVsCivid19.log
+tail -f ~/codeVsCivid19.log
 '
