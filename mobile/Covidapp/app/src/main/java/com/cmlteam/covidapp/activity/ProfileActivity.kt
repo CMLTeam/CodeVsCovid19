@@ -22,7 +22,7 @@ class ProfileActivity : AppCompatActivity() {
 
     private lateinit var toolbar: ActionBar
     private lateinit var customer: Customer
-//    private val getCustomerTask: GetCustomerTask = GetCustomerTask()
+    private val getCustomerTask: GetCustomerTask = GetCustomerTask()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,39 +35,7 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun initCustomer() {
-//        getCustomerTask.execute(null as Void?)
-        customer = Customer(
-            1001,
-            "+123567655656",
-            "ID-53453",
-            "John Doe",
-            960,
-            "normal",
-            "Prenzlauer Allee 248-251, 10405 Berlin, Germany",
-            "https://pickaface.net/gallery/avatar/Garret22785730d3a8d5525.png",
-            arrayListOf(1002),
-            arrayListOf()
-        )
-
-
-        Picasso.get().load(customer.pictureUrl).placeholder(getDrawable(R.drawable.index)!!).resize(50, 50)
-            .centerCrop().into(profile_image);
-        profile_name.text = customer.name
-        profile_document_id.text = customer.documentId
-        profile_score.text = "${customer.illnessRate} / 1000"
-        when {
-            customer.illnessRate < 200 -> findViewById<TextView>(R.id.profile_score).setTextColor(
-                getColor(R.color.good_illness_rate)
-            )
-            customer.illnessRate in 201..599 -> findViewById<TextView>(R.id.profile_score).setTextColor(
-                getColor(R.color.normal_illness_rate)
-            )
-            customer.illnessRate > 600 -> findViewById<TextView>(R.id.profile_score).setTextColor(
-                getColor(R.color.bad_illness_rate)
-            )
-        }
-        profile_address.text = customer.address
-        profile_number.text = customer.phoneNumber
+        getCustomerTask.execute(null as Void?)
     }
 
 
@@ -98,7 +66,24 @@ class ProfileActivity : AppCompatActivity() {
                             response: Response<Customer>
                         ) {
                             customer = response.body()!!
-                            println("ADDRESS ADDRESS ADDRESS ADDRESS ADDRESS ADDRESS ADDRESS ${customer.address}")
+                            Picasso.get().load(customer.pictureUrl).placeholder(getDrawable(R.drawable.index)!!).resize(50, 50)
+                                .centerCrop().into(profile_image);
+                            profile_name.text = customer.name
+                            profile_document_id.text = customer.documentId
+                            profile_score.text = "${customer.illnessRate} / 1000"
+                            when {
+                                customer.illnessRate < 200 -> findViewById<TextView>(R.id.profile_score).setTextColor(
+                                    getColor(R.color.good_illness_rate)
+                                )
+                                customer.illnessRate in 201..599 -> findViewById<TextView>(R.id.profile_score).setTextColor(
+                                    getColor(R.color.normal_illness_rate)
+                                )
+                                customer.illnessRate > 600 -> findViewById<TextView>(R.id.profile_score).setTextColor(
+                                    getColor(R.color.bad_illness_rate)
+                                )
+                            }
+                            profile_address.text = customer.address
+                            profile_number.text = customer.phoneNumber
 
                         }
                     })
