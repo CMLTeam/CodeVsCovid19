@@ -130,9 +130,9 @@ public class PopulateService {
     Target target1 = new Target(
       4001,
       Target.TargetType.shop,
-      "Supermarket1",
+      "Lidl",
       300L,
-      "Prenzlauer Allee 242, 10405 Berlin, Germany",
+      "Prenzlauer Allee 242, Berlin, Germany",
       100.0,
       100.0,
       "9.00 AM - 9.00 PM.",
@@ -176,9 +176,9 @@ public class PopulateService {
     Target target2 = new Target(
       4002,
       Target.TargetType.shop,
-      "Supermarket1",
+      "Billa",
       300L,
-      "Brunnenstraße 197-198, 10119 Berlin, Germany",
+      "Brunnenstraße 197, Berlin, Germany",
       200.0,
       200.0,
       "8.00 AM - 9.00 PM.",
