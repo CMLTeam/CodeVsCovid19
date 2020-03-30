@@ -1,7 +1,6 @@
 package com.cmlteam.covidapp.activity
 
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
@@ -53,13 +52,13 @@ class CustomerActivity : AppCompatActivity() {
     }
 
 
-    private fun setupProfileFragment(){
+    private fun setupProfileFragment() {
         toolbar.title = getString(R.string.bottom_bar_profile)
         val profileFragment = ProfileFragment.newInstance()
         openFragment(profileFragment)
     }
 
-    private fun setupQrFragment(){
+    private fun setupQrFragment() {
         toolbar.title = getString(R.string.bottom_bar_QR)
         val qrFragment = QRFragment.newInstance()
         openFragment(qrFragment)

@@ -2,7 +2,6 @@ package com.cmlteam.covidapp.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.View
 import android.widget.ImageButton
 import androidx.appcompat.app.ActionBar

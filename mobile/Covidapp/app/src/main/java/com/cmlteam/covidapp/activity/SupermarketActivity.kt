@@ -16,20 +16,20 @@ import com.cmlteam.covidapp.dto.Slot
 import com.cmlteam.covidapp.dto.Target
 import com.example.covid_app.R
 import com.example.demoappdrawermenu.service.HttpService
-import kotlinx.android.synthetic.main.supermarket_view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.time.LocalDateTime
 
 class SupermarketActivity : AppCompatActivity() {
 
     private lateinit var toolbar: ActionBar
     private var mSupermarketList: List<Target>? = listOf(
-        Target(1, "Auchan", 500, 50, "City, Street, Building",
+        Target(
+            1, "Auchan", 500, 50, "City, Street, Building",
             45.1f, 45.2f, "Mon-Fri: 09:00-20:00 Sat-Sun: 09:00-17:00", "", listOf(
                 Slot(1, "Mon 30 Mar 09:00-09:30", "2020-30-03T09:00:00", "2020-30-03T09:30:00", 15)
-            ))
+            )
+        )
     )
     private var mRecyclerView: RecyclerView? = null
     private var mLayoutManager: LinearLayoutManager? = null
@@ -49,20 +49,20 @@ class SupermarketActivity : AppCompatActivity() {
 
         HttpService.create().getPlaces()
             .enqueue(object : Callback<Any> {
-            override fun onFailure(call: Call<Any>, t: Throwable) {
-                println("Error: $t")
-            }
-
-            override fun onResponse(call: Call<Any>, response: Response<Any>) {
-                mSupermarketList = response.body() as List<Target>
-                if (recyclerView !== null && mSupermarketList !== null) {
-                    mLayoutManager = LinearLayoutManager(recyclerView.context)
-                    recyclerView.layoutManager = mLayoutManager
-                    recyclerView.adapter = SupermarketRecyclerViewAdapter()
+                override fun onFailure(call: Call<Any>, t: Throwable) {
+                    println("Error: $t")
                 }
-            }
 
-        })
+                override fun onResponse(call: Call<Any>, response: Response<Any>) {
+                    mSupermarketList = response.body() as List<Target>
+                    if (recyclerView !== null && mSupermarketList !== null) {
+                        mLayoutManager = LinearLayoutManager(recyclerView.context)
+                        recyclerView.layoutManager = mLayoutManager
+                        recyclerView.adapter = SupermarketRecyclerViewAdapter()
+                    }
+                }
+
+            })
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -97,7 +97,7 @@ class SupermarketActivity : AppCompatActivity() {
             holder.marketAddress.text = market.address
             holder.marketCapacity.text = "max: " + market.maxPeopleCapacity.toString()
             holder.marketHours.text = market.workHours
-            holder.marketDistance.text = ((market.distance)/1000.0f).toString() + " km"
+            holder.marketDistance.text = ((market.distance) / 1000.0f).toString() + " km"
 //            holder.marketImage.image
             holder.availableToday.text = "12"
             holder.availableTomorrow.text = "17"

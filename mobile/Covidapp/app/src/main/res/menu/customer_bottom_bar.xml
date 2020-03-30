@@ -9,6 +9,6 @@
     <item
         android:id="@+id/navigation_qr"
         android:enabled="true"
-        android:icon="@drawable/qr_code_sample"
+        android:icon="@drawable/ic_key_black_24dp"
         android:title="@string/bottom_bar_QR" />
 </menu>
