@@ -25,7 +25,7 @@ data class Target(
 )
 
 data class Slot(
-    val targetId: String,
+    val targetId: Int,
     val description: String, //string representation
     val startDate: String, // ISO8601 datetime , to sort by,
     val endDate: String, // ISO8601, end date to maybe sort by

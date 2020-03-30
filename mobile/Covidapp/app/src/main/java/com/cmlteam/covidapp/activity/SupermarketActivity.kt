@@ -1,22 +1,51 @@
 package com.cmlteam.covidapp.activity
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.cmlteam.covidapp.dto.Slot
+import com.cmlteam.covidapp.dto.Target
 import com.example.covid_app.R
+import kotlinx.android.synthetic.main.supermarket_view.*
+import java.time.LocalDateTime
 
 class SupermarketActivity : AppCompatActivity() {
 
     private lateinit var toolbar: ActionBar
+    private var mSupermarketList: List<Target> = listOf(
+        Target(1, "Auchan", 500, 50, "City, Street, Building",
+            45.1f, 45.2f, "Mon-Fri: 09:00-20:00 Sat-Sun: 09:00-17:00", "", listOf(
+                Slot(1, "Mon 30 Mar 09:00-09:30", "2020-30-03T09:00:00", "2020-30-03T09:30:00", 15)
+            ))
+    )
+    private var mRecyclerView: RecyclerView? = null
+    private var mLayoutManager: LinearLayoutManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_supermarket)
 
-        findViewById<TextView>(R.id.textView2).text = "Supermarket list is here"
         setupToolbar()
+
+        mRecyclerView = findViewById(R.id.markets_recycler_view) as RecyclerView
+        setupRecyclerView(mRecyclerView)
+//        setupMarketList()
+    }
+
+    private fun setupRecyclerView(recyclerView: RecyclerView?) {
+        if (recyclerView !== null) {
+            mLayoutManager = LinearLayoutManager(recyclerView.context)
+            recyclerView.layoutManager = mLayoutManager
+            recyclerView.adapter = SupermarketRecyclerViewAdapter()
+        }
 
     }
 
@@ -32,5 +61,44 @@ class SupermarketActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayShowHomeEnabled(true)
     }
 
+
+    inner class SupermarketRecyclerViewAdapter :
+        RecyclerView.Adapter<SupermarketRecyclerViewAdapter.ViewHolder>() {
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.supermarket_view, parent, false)
+            return ViewHolder(view)
+        }
+
+        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+            val market = mSupermarketList[position]
+            holder.marketName.text = market.name
+            holder.marketAddress.text = market.address
+            holder.marketCapacity.text = "max: " + market.maxPeopleCapacity.toString()
+            holder.marketHours.text = market.workHours
+            holder.marketDistance.text = (market.distance/1000).toString() + " km"
+//            holder.marketImage.image
+            holder.availableToday.text = "12"
+            holder.availableTomorrow.text = "17"
+        }
+
+        override fun getItemCount(): Int {
+            return mSupermarketList!!.count()
+        }
+
+        inner class ViewHolder(mView: View) :
+            RecyclerView.ViewHolder(mView) {
+            val marketName = mView.findViewById(R.id.market_name) as TextView
+            val marketAddress = mView.findViewById(R.id.market_address) as TextView
+            val marketCapacity = mView.findViewById(R.id.market_capacity) as TextView
+            val marketDistance = mView.findViewById(R.id.market_distance) as TextView
+            val marketImage = mView.findViewById(R.id.market_image) as ImageView
+            val marketHours = mView.findViewById(R.id.working_hours) as TextView
+            val availableToday = mView.findViewById(R.id.today_available) as TextView
+            val availableTomorrow = mView.findViewById(R.id.tomorrow_available) as TextView
+        }
+
+    }
 
 }

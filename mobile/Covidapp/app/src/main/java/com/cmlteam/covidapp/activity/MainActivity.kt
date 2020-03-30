@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun setupToolbar() {
         toolbar = supportActionBar!!
+        toolbar.hide()
         toolbar.title = getString(R.string.main_menu_title)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
