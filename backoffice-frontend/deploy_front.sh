@@ -6,7 +6,11 @@ SERVER_SSH=tamerlan@cmlteam.com
 
 # remove old resources
 rm -rf ./build/
-ssh $SERVER_SSH 'rm -rf covid_backoffice/build/*'
+ssh $SERVER_SSH '
+rm -rf covid_backoffice/build/*
+
+mkdir -p covid_backoffice
+'
 
 # build and copy resources
 npm i
