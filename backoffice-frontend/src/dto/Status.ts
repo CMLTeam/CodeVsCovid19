@@ -1,12 +1,21 @@
-export type Status = "positive" | "negative" | "suspected" | "recovered" | "dead"
-;
+export type Status =
+  | "positive"
+  | "negative"
+  | "suspected"
+  | "recovered"
+  | "dead";
 
 export const getStatusColor = (status: Status): string => {
   switch (status) {
     case "suspected":
-      return "#ff4500";
+      return "darkorange";
     case "negative":
-      return "#dc143c";
+    case "recovered":
+      return "green";
+    case "positive":
+      return "red";
+    case "dead":
+      return "darkred";
     default:
       return "";
   }

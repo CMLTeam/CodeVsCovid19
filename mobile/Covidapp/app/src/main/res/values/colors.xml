@@ -6,8 +6,8 @@
     <color name="InActiveButtonMask">#80FFFFFF</color>
     <color name="colorPressedIcons">#FFFFFF</color>
 
-    <color name="bad_illness_rate">#F44336</color>
+    <color name="bad_illness_rate">#EB4F42</color>
     <color name="good_illness_rate">#4CAF50</color>
-    <color name="normal_illness_rate">#FFEB3B</color>
+    <color name="normal_illness_rate">#E0CE28</color>
 
 </resources>

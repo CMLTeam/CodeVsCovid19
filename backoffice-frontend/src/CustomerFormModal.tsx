@@ -80,13 +80,13 @@ export const CustomerFormModal = (props: CustomerFormProps) => {
           <img
             style={photoStyle}
             src={props.customer.pictureUrl}
-            alt="Profile photo"
+            alt="Profile"
           />
         ) : (
           <img
             style={photoStyle}
             src={profile}
-            alt="Profile photo placeholder"
+            alt="Profile placeholder"
           />
         )}
         <div className={classes.content}>
