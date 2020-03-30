@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin
+@CrossOrigin()
 public class DoctorApi {
 
     private final DoctorRepository doctorRepository;
@@ -41,12 +41,18 @@ public class DoctorApi {
     @PutMapping("/customers/{customer_id}/status")
     public void changeCustomerStatus(@PathVariable(name = "customer_id") Integer customerId,
                                      @RequestBody ChangeStatusModel model) {
-        customerRepository.findById(customerId).setStatus(Customer.CustomerStatus.valueOf(model.status));
+        Customer customer = customerRepository.findById(customerId);
+        if(model.status == Customer.CustomerStatus.ill){
+            customer.setIllnessRate(10);
+        } else if (model.status == Customer.CustomerStatus.normal){
+            customer.setIllnessRate(1000);
+        }
+        customer.setStatus(model.status);
     }
 
     @Data
     private static class ChangeStatusModel {
-        String status;
+        Customer.CustomerStatus status;
     }
 
 }

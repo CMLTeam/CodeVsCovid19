@@ -2,17 +2,23 @@
 
 set -ex;
 
+SERVER_SSH=tamerlan@cmlteam.com
+
 # remove old resources
 rm -rf ./build/
-ssh tamerlan@cmlteam.com 'rm -rf covid_backoffice/build/*'
+ssh $SERVER_SSH '
+rm -rf covid_backoffice/build/*
+
+mkdir -p covid_backoffice
+'
 
 # build and copy resources
 npm i
 npm run-script build
-scp -r ./build/ tamerlan@cmlteam.com:./covid_backoffice
+scp -r ./build/ $SERVER_SSH:./covid_backoffice
 
 # start frontend
-ssh tamerlan@cmlteam.com '
+ssh $SERVER_SSH '
 
 PORT=$(sudo lsof -t -i:8098);
 
