@@ -15,6 +15,9 @@
     <string name="profile_info">Info</string>
     <string name="profile_address">Address</string>
     <string name="profile_phone">Phone number</string>
+    <string name="bad_advice">THE TEXT FOR ADVICE WHILE ILLNESS RATE MORE THAN 600 WILL BE HERE</string>
+    <string name="normal_addvice">THE TEXT FOR ADVICE WHILE ILLNESS RATE UNDER 600 BUT MORE THAN 200 WILL BE HERE</string>
+    <string name="good_advice">THE TEXT FOR ADVICE WHILE ILLNESS RATE UNDER 200 WILL BE HERE</string>
 
 
     <!-- Supermarkets strings -->

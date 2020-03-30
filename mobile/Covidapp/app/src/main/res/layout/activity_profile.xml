@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center_horizontal"
-        android:paddingLeft="16dp"
+        android:paddingStart="16dp"
         android:paddingEnd="16dp">
 
         <TextView
@@ -20,6 +20,16 @@
             android:textSize="20sp"
             android:gravity="center"
             android:text="Name Surname" />
+
+
+        <TextView
+            android:id="@+id/profile_document_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:text="Document ID" />
 
 
         <TextView
@@ -41,6 +51,18 @@
             android:textStyle="bold|italic"
             android:gravity="center"
             android:text="76 / 1000" />
+
+        <TextView
+            android:id="@+id/advice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:text="@string/bad_advice" />
+
+
+
 
         <ImageView
             android:layout_width="wrap_content"
@@ -82,7 +104,28 @@
             android:layout_marginTop="10dp"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:textColor="@color/bad_illness_rate"
             android:text="Tom Roley, 845"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/normal_illness_rate"
+            android:text="Jack Billrow, 384"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/good_illness_rate"
+            android:text="Bill Eggson, 10"/>
+
+
 
 
         <ImageButton
@@ -145,9 +188,8 @@
             android:layout_marginTop="5dp"
             android:textStyle="bold"
             android:textSize="16sp"
-            android:text="+38057382948" />
-
-
+            android:text="+38057382948"
+            android:layout_marginBottom="20dp"/>
 
     </LinearLayout>
 
