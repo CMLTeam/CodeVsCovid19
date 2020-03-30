@@ -11,14 +11,18 @@
     <!-- Profile strings -->
     <string name="profile_toolbar_title">Profile</string>
     <string name="profile_score">Score</string>
-    <string name="people_in_contact">People you contacted with:</string>
+    <string name="people_in_contact">People you contact with frequently</string>
     <string name="profile_info">Info</string>
     <string name="profile_address">Address</string>
     <string name="profile_phone">Phone number</string>
     <string name="good_advice">
-Wash your hands often, avoid touching your eyes, nose and mouth.
+        KEEP YOUR SCORE HIGH! \n\n
 
-Wash your hands often (even several times per hour) using soap and warm water. If you do not have access to it, use alcohol-based disinfectant liquids / gels (min. 60%). Doing so  kills the virus on your hands, which may be contaminated by the virus through touching various surfaces. Touching eyes, nose or mouth with contaminated hands can transfer the virus from the surface.</string>
+        It does NOT guarantee your safety! \n
+
+        Wash your hands often, avoid touching your eyes, nose and mouth.\n
+        Use alcohol-based disinfectant liquids / gels (min. 60%).\n
+        Touching eyes, nose or mouth with contaminated hands can transfer the virus from surfaces.</string>
     <string name="normal_addvice">THE TEXT FOR ADVICE WHILE ILLNESS RATE UNDER 700 BUT MORE THAN 300 WILL BE HERE</string>
     <string name="bad_advice">THE TEXT FOR ADVICE WHILE ILLNESS RATE UNDER 200 WILL BE HERE</string>
     <string name="bottom_bar_profile">Profile</string>

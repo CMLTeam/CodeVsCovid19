@@ -9,16 +9,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:textSize="20sp"
         android:gravity="center"
-        android:text="@string/qr_code_advice" />
+        android:text="Your personal QR:"
+        android:textSize="20sp" />
 
 
     <ImageView
-        android:layout_width="match_parent"
+        android:layout_width="260dp"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
+        android:layout_marginBottom="60dp"
         android:src="@drawable/qr_code_sample" />
 
 

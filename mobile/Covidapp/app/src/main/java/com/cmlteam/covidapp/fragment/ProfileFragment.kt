@@ -7,10 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.cmlteam.covidapp.dto.Customer
 import com.example.covid_app.R
 import com.example.demoappdrawermenu.service.HttpService
-import com.squareup.picasso.Picasso
+
 import kotlinx.android.synthetic.main.fragment_profile.*
 import retrofit2.Call
 import retrofit2.Response
@@ -50,10 +51,23 @@ class ProfileFragment : Fragment() {
                             response: Response<Customer>
                         ) {
                             customer = response.body()!!
-                            Picasso.get().load(customer.pictureUrl)
+
+                            if (profile_image == null) {
+                                return
+                            }
+
+                            Glide.with(this@ProfileFragment.context)
+                                .load(customer.pictureUrl)
+                                .dontAnimate()
                                 .placeholder(context!!.getDrawable(R.drawable.index)!!)
-                                .resize(700, 700)
-                                .centerCrop().into(profile_image);
+                                .dontTransform()
+                                .fitCenter()
+                                .into(profile_image)
+
+//                            Picasso.get().load(customer.pictureUrl)
+//                                .placeholder()
+//                                .resize(700, 700)
+//                                .centerCrop().into(profile_image);
                             profile_name.text = customer.name
                             profile_document_id.text = customer.documentId
                             profile_score.text = "${customer.illnessRate} / 1000"

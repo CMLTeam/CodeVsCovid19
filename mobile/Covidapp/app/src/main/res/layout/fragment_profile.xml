@@ -57,10 +57,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:textSize="16sp"
-            android:textStyle="bold|italic"
             android:gravity="center"
-            android:text="76 / 1000" />
+            android:text="76 / 1000"
+            android:textSize="20sp"
+            android:textStyle="bold|italic" />
 
         <TextView
             android:id="@+id/advice"
