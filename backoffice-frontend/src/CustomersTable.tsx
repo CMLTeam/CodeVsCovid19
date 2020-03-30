@@ -60,7 +60,7 @@ export const CustomersTable = (props: CustomersTableProps) => {
           <TableRow>
             <TableCell align="left">Document</TableCell>
             <TableCell align="center">Full name</TableCell>
-            <TableCell align="center">Status</TableCell>
+            <TableCell align="center">Covid-19 Status</TableCell>
             <TableCell align="center">Rate</TableCell>
             <TableCell align="center">Address</TableCell>
           </TableRow>
