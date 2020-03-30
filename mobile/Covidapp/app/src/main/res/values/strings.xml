@@ -10,6 +10,11 @@
 
     <!-- Profile strings -->
     <string name="profile_toolbar_title">Profile</string>
+    <string name="profile_score">Score</string>
+    <string name="people_in_contact">People you contacted with:</string>
+    <string name="profile_info">Info</string>
+    <string name="profile_address">Address</string>
+    <string name="profile_phone">Phone number</string>
 
 
     <!-- Supermarkets strings -->

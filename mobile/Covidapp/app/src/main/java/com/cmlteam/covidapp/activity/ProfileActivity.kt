@@ -15,11 +15,13 @@ class ProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
-
-        findViewById<TextView>(R.id.textView).text = "Profile is here"
         setupToolbar()
 
+
     }
+
+
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         onBackPressed()
