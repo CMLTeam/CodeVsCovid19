@@ -39,7 +39,7 @@ public class PopulateService {
       Customer.CustomerStatus.negative,
       "Prenzlauer Allee 248-251, 10405 Berlin, Germany",
       "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQGbA4q_zwzLq8uWFZnLBGGeUY2KVAk0IndY4q3tp_28jwgj994",
-      Arrays.asList(1001),
+      Arrays.asList(1001, 1003),
       new ArrayList<>()
     );
 
@@ -54,7 +54,7 @@ public class PopulateService {
       Customer.CustomerStatus.recovered,
       "Prenzlauer Allee 248-251, 10405 Berlin, Germany",
       "https://pickaface.net/gallery/avatar/Garret22785730d3a8d5525.png",
-      new ArrayList<>(Arrays.asList(1002)),
+      new ArrayList<>(Arrays.asList(1002, 1003)),
       new ArrayList<>()
     );
 
@@ -67,7 +67,7 @@ public class PopulateService {
       Customer.CustomerStatus.suspected,
       "Prenzlauer Allee 248-251, 10405 Berlin, Germany",
       "https://pickaface.net/gallery/avatar/unr_mmem_200330_0404_2o3l89n.png",
-      new ArrayList<>(Arrays.asList(1002)),
+      new ArrayList<>(Arrays.asList(1002, 1001)),
       new ArrayList<>()
     );
 
@@ -137,7 +137,7 @@ public class PopulateService {
       100.0,
       "9.00 AM - 9.00 PM.",
       "https://cdn.icon-icons.com/icons2/1706/PNG/512/3986701-online-shop-store-store-icon_112278.png",
-      new ArrayList<>(Arrays.asList(3001, 3002, 3003))
+      new ArrayList<>(Arrays.asList(3001, 3002, 3003, 3004, 3005, 3006))
     );
 
     targetRepository.create(target1);
@@ -145,33 +145,63 @@ public class PopulateService {
     Slot slot1target1 = new Slot(
       3001,
       4001,
-      "9.00 - 12.30 AM",
+      "9.00 - 11.00",
       LocalDateTime.of(2020, 5, 1, 9, 0, 0),
-      LocalDateTime.of(2020, 5, 1, 12, 30, 0),
+      LocalDateTime.of(2020, 5, 1, 11, 0, 0),
       7
     );
 
     Slot slot2target1 = new Slot(
       3002,
       4001,
-      "12.30 - 16.00 AM",
-      LocalDateTime.of(2020, 5, 1, 12, 30, 0),
-      LocalDateTime.of(2020, 5, 1, 16, 0, 0),
-      34
+      "11.00 - 13.00",
+      LocalDateTime.of(2020, 5, 1, 11, 0, 0),
+      LocalDateTime.of(2020, 5, 1, 13, 0, 0),
+      15
     );
 
     Slot slot3target1 = new Slot(
       3003,
       4001,
-      "16.00 - 21.00 AM",
-      LocalDateTime.of(2020, 5, 1, 16, 0, 0),
-      LocalDateTime.of(2020, 5, 1, 21, 0, 0),
-      56
+      "13.30 - 15.00",
+      LocalDateTime.of(2020, 5, 1, 13, 30, 0),
+      LocalDateTime.of(2020, 5, 1, 15, 0, 0),
+      14
+    );
+
+    Slot slot4target1 = new Slot(
+      3001,
+      4001,
+      "15.00 - 17.30",
+      LocalDateTime.of(2020, 5, 1, 15, 0, 0),
+      LocalDateTime.of(2020, 5, 1, 17, 30, 0),
+      17
+    );
+
+    Slot slot5target1 = new Slot(
+      3001,
+      4001,
+      "17.30 - 19.00",
+      LocalDateTime.of(2020, 5, 1, 17, 30, 0),
+      LocalDateTime.of(2020, 5, 1, 19, 0, 0),
+      24
+    );
+
+    Slot slot6target1 = new Slot(
+      3002,
+      4001,
+      "19.00 - 20.00",
+      LocalDateTime.of(2020, 5, 1, 19, 0, 0),
+      LocalDateTime.of(2020, 5, 1, 20, 0, 0),
+      34
     );
 
     slotRepository.create(slot1target1);
     slotRepository.create(slot2target1);
     slotRepository.create(slot3target1);
+    slotRepository.create(slot4target1);
+    slotRepository.create(slot5target1);
+    slotRepository.create(slot6target1);
 
     Target target2 = new Target(
       4002,
@@ -183,42 +213,70 @@ public class PopulateService {
       200.0,
       "8.00 AM - 9.00 PM.",
       "https://cdn.icon-icons.com/icons2/1706/PNG/512/3986701-online-shop-store-store-icon_112278.png",
-      new ArrayList<>(Arrays.asList(3004, 3005, 3006))
+      new ArrayList<>(Arrays.asList(3010, 3011, 3012, 3013, 3014, 3015))
     );
 
     targetRepository.create(target2);
 
     Slot slot1target2 = new Slot(
-      3004,
-      4002,
-      "8.00 - 13.00 AM",
-      LocalDateTime.of(2020, 5, 1, 8, 0, 0),
-      LocalDateTime.of(2020, 5, 1, 13, 0, 0),
-      12
+            3010,
+            4001,
+            "9.00 - 11.00",
+            LocalDateTime.of(2020, 5, 1, 9, 0, 0),
+            LocalDateTime.of(2020, 5, 1, 11, 0, 0),
+            2
     );
 
     Slot slot2target2 = new Slot(
-      3005,
-      4002,
-      "13.00 - 17.30 AM",
-      LocalDateTime.of(2020, 5, 1, 13, 0, 0),
-      LocalDateTime.of(2020, 5, 1, 17, 30, 0),
-      45
+            3011,
+            4001,
+            "11.00 - 13.00",
+            LocalDateTime.of(2020, 5, 1, 11, 0, 0),
+            LocalDateTime.of(2020, 5, 1, 13, 0, 0),
+            4
     );
 
     Slot slot3target2 = new Slot(
-      3006,
-      4002,
-      "17.30 - 21.00 AM",
-      LocalDateTime.of(2020, 5, 1, 17, 30, 0),
-      LocalDateTime.of(2020, 5, 1, 21, 0, 0),
-      24
+            3012,
+            4001,
+            "13.00 - 14.00",
+            LocalDateTime.of(2020, 5, 1, 13, 0, 0),
+            LocalDateTime.of(2020, 5, 1, 14, 0, 0),
+            9
+    );
+
+    Slot slot4target2 = new Slot(
+            3013,
+            4001,
+            "14.00 - 15.00",
+            LocalDateTime.of(2020, 5, 1, 14, 0, 0),
+            LocalDateTime.of(2020, 5, 1, 15, 0, 0),
+            8
+    );
+
+    Slot slot5target2 = new Slot(
+            3014,
+            4001,
+            "15.00 - 16.00",
+            LocalDateTime.of(2020, 5, 1, 15, 0, 0),
+            LocalDateTime.of(2020, 5, 1, 16, 0, 0),
+            16
+    );
+
+    Slot slot6target2 = new Slot(
+            3015,
+            4001,
+            "16.00 - 17.00",
+            LocalDateTime.of(2020, 5, 1, 16, 0, 0),
+            LocalDateTime.of(2020, 5, 1, 17, 0, 0),
+            24
     );
 
     slotRepository.create(slot1target2);
     slotRepository.create(slot2target2);
     slotRepository.create(slot3target2);
-
-
+    slotRepository.create(slot4target2);
+    slotRepository.create(slot5target2);
+    slotRepository.create(slot6target2);
   }
 }
