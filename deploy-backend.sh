@@ -19,6 +19,7 @@ echo
 echo "Deploy..."
 echo
 
+ssh $SERVER_SSH 'mkdir -p covid19hackathon'
 scp target/$JAR_NAME $SERVER_SSH:~/covid19hackathon
 
 echo
