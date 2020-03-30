@@ -25,16 +25,21 @@ echo
 echo "(Re)start..."
 echo
 
-ssh $SERVER_SSH "
+ssh $SERVER_SSH '
 set -e
-echo 'pkill...'
+echo "pkill...";
 
-pkill -9 'sudo lsof -t -i:8099'
+PORT=$(sudo lsof -t -i:8099);
 
-echo 'staring...'
-nohup java \
-    -Xmx${JAVA_XMX}M \
-    -Xms${JAVA_XMX}M \
-    -jar 'covid19hackathon/$JAR_NAME' 2>&1 >>~/codeVsCivid19.log &
-tail -f ~/codeVsCivid19.log
-"
+if [[ $PORT ]]
+then
+sudo kill -9 $PORT;
+fi;
+
+echo "staring..."
+java \
+    -Xmx'${JAVA_XMX}'M \
+    -Xms'${JAVA_XMX}'M \
+    -jar covid19hackathon/'$JAR_NAME' &> ~/codeVsCivid19.log &
+#tail -f ~/codeVsCivid19.log
+'

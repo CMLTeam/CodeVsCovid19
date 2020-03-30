@@ -4,7 +4,15 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-export const BACKEND_API= "http://localhost:8099";
+
+let BACKEND;
+if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+  BACKEND = "http://127.0.0.1:8099";
+} else {
+  BACKEND = "http://cmlteam.com:8099";
+}
+
+export const BACKEND_API = BACKEND;
 
 ReactDOM.render(
   <React.StrictMode>

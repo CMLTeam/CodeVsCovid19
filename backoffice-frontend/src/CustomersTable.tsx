@@ -66,42 +66,45 @@ export const CustomersTable = (props: CustomersTableProps) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {customers.map((customer) => (
-            <TableRow
-              key={customer.id}
-              hover
-              onClick={() => handleOpenCustomerForm(customer)}
-            >
-              <TableCell align="left">{customer.documentId}</TableCell>
-              <TableCell align="left" title={customer.name}>
-                {customer.name}
-              </TableCell>
-              <TableCell
-                align="center"
-                style={{
-                  textTransform: "uppercase",
-                  color: getStatusColor(customer.status),
-                }}
+          {customers.map((customer) => {
+
+            const rate = customer.illnessRate / 200;
+            return (
+              <TableRow
+                key={customer.id}
+                hover
+                onClick={() => handleOpenCustomerForm(customer)}
               >
-                {customer.status}
-              </TableCell>
-              <TableCell align="center" title={String(customer.illnessRate)}>
-                <StyledRating
-                  max={5}
-                  icon={<FavoriteIcon fontSize="inherit" />}
-                  defaultValue={customer.illnessRate / 200}
-                  precision={0.1}
-                  readOnly
-                />
-              </TableCell>
-              <TableCell title={customer.address} align="left">
-                {customer.address}
-              </TableCell>
-            </TableRow>
-          ))}
+                <TableCell align="left">{customer.documentId}</TableCell>
+                <TableCell align="left" title={customer.name}>
+                  {customer.name}
+                </TableCell>
+                <TableCell
+                  align="center"
+                  style={{
+                    textTransform: "uppercase",
+                    color: getStatusColor(customer.status),
+                  }}
+                >
+                  {customer.status}
+                </TableCell>
+                <TableCell align="center" title={String(customer.illnessRate)}>
+                  <StyledRating
+                    max={5}
+                    icon={<FavoriteIcon fontSize="inherit" />}
+                    value={rate}
+                    precision={0.1}
+                    readOnly
+                  />
+                </TableCell>
+                <TableCell title={customer.address} align="left">
+                  {customer.address}
+                </TableCell>
+              </TableRow>
+            );
+          })}
         </TableBody>
       </Table>
-
       <CustomerFormModal
         update={handleUpdate}
         isOpen={openForm}
