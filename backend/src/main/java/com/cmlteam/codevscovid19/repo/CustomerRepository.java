@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 @Component
 public class CustomerRepository {
@@ -33,7 +34,9 @@ public class CustomerRepository {
         for (Integer id : ids) {
             result.add(customerTable.get(id));
         }
-        return result;
+        return result.stream()
+          .sorted(Comparator.comparing(Customer::getIllnessRate))
+          .collect(Collectors.toList());
     }
 
     public void putToCloseCommunication(Integer customerId, Integer closeCommunicationWith) {

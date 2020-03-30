@@ -1,13 +1,12 @@
-export type Status = "normal" | "analysis" | "ill";
+export type Status = "positive" | "negative" | "suspected" | "recovered" | "dead"
+;
 
 export const getStatusColor = (status: Status): string => {
   switch (status) {
-    case "analysis":
+    case "suspected":
       return "#ff4500";
-    case "ill":
+    case "negative":
       return "#dc143c";
-    case "normal":
-      return "";
     default:
       return "";
   }

@@ -42,10 +42,12 @@ public class DoctorApi {
     public void changeCustomerStatus(@PathVariable(name = "customer_id") Integer customerId,
                                      @RequestBody ChangeStatusModel model) {
         Customer customer = customerRepository.findById(customerId);
-        if(model.status == Customer.CustomerStatus.ill){
+        if(model.status == Customer.CustomerStatus.positive){
             customer.setIllnessRate(10);
-        } else if (model.status == Customer.CustomerStatus.normal){
+        } else if (model.status == Customer.CustomerStatus.negative){
             customer.setIllnessRate(1000);
+        } else if (model.status == Customer.CustomerStatus.dead){
+            customer.setIllnessRate(-1);
         }
         customer.setStatus(model.status);
     }

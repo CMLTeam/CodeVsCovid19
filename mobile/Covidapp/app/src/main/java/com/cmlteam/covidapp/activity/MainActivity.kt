@@ -2,12 +2,11 @@ package com.cmlteam.covidapp.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.View
 import android.widget.ImageButton
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
-import com.cmlteam.covidapp.activity.ProfileActivity
+import com.cmlteam.covidapp.activity.CustomerActivity
 import com.cmlteam.covidapp.activity.SupermarketActivity
 import com.example.covid_app.R
 
@@ -32,7 +31,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v!!.id) {
-            R.id.profile_button -> startActivity(Intent(this, ProfileActivity::class.java))
+            R.id.profile_button -> startActivity(Intent(this, CustomerActivity::class.java))
             R.id.supermarkets_button -> startActivity(Intent(this, SupermarketActivity::class.java))
         }
     }

@@ -14,7 +14,7 @@ const getDummyData = async (): Promise<Customer[]> => {
       name: "John Dou Micklovich",
       illnessRate: 0,
       address: "Third planet from Sun",
-      status: "ill",
+      status: "negative",
       pictureUrl: "/546_profile_photo.jpg",
       closeCommunicationWith: [547],
     },
@@ -25,7 +25,7 @@ const getDummyData = async (): Promise<Customer[]> => {
       name: "Johna Dou Silvestrovna",
       illnessRate: 356,
       address: "Third planet from Sun",
-      status: "analysis",
+      status: "suspected",
       closeCommunicationWith: [546],
     },
     {
@@ -35,7 +35,7 @@ const getDummyData = async (): Promise<Customer[]> => {
       name: "Another Name",
       illnessRate: 1000,
       address: "Second planet from Sun",
-      status: "normal",
+      status: "positive",
       closeCommunicationWith: [],
     },
   ];

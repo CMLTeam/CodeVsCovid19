@@ -19,8 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.cmlteam.covidapp.activity.ProfileActivity"></activity>
         <activity android:name="com.cmlteam.covidapp.activity.SupermarketActivity"></activity>
+        <activity android:name="com.cmlteam.covidapp.activity.CustomerActivity"></activity>
         <activity android:name="com.cmlteam.covidapp.activity.SlotActivity"></activity>
     </application>
 

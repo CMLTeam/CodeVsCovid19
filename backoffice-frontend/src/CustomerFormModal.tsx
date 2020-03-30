@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     content: {
       margin: theme.spacing(3, 0),
-      minWidth: 120,
+      minWidth: 170,
     },
   })
 );
@@ -99,16 +99,18 @@ export const CustomerFormModal = (props: CustomerFormProps) => {
         </div>
         <div>
           <FormControl className={classes.content}>
-            <InputLabel>Status</InputLabel>
+            <InputLabel>Covid-19 Status</InputLabel>
             <Select
               native
               value={status}
               onChange={handleChangeStatus}
               input={<Input />}
             >
-              <option value={"normal"}>NORMAL</option>
-              <option value={"analysis"}>ANALYSIS</option>
-              <option value={"ill"}>ILL</option>
+              <option value={"recovered"}>RECOVERED</option>
+              <option value={"suspected"}>SUSPECTED</option>
+              <option value={"positive"}>POSITIVE</option>
+              <option value={"negative"}>NEGATIVE</option>
+              <option value={"dead"}>DEAD</option>
             </Select>
           </FormControl>
         </div>

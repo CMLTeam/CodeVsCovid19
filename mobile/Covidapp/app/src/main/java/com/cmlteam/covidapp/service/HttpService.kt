@@ -1,6 +1,7 @@
 package com.example.demoappdrawermenu.service
 
 import com.cmlteam.covidapp.dto.BookSlotRequest
+import com.cmlteam.covidapp.dto.Customer
 import com.cmlteam.covidapp.dto.Slot
 import com.cmlteam.covidapp.dto.Target
 import okhttp3.OkHttpClient
@@ -14,10 +15,8 @@ import java.util.concurrent.TimeUnit
 
 interface HttpService {
 
-    @GET("/customers/{id}")
-    fun getUser(
-        @Path("id") id: Int
-    ): Call<Any>//User>
+    @GET("/me")
+    fun getCustomerPage():Call<Customer>
 
 
     @GET("/targets")
@@ -57,13 +56,6 @@ interface HttpService {
         @Path("customer_id") userId: Int
     ) : Call<List<Int>>
 
-
-
-//    @POST("/auth/sign-up")
-//    fun signUp(
-//        @Body signUpRequest: SignUpAccountRequest
-//    ):Call<Void>
-//
 
     companion object {
         fun create(): HttpService {

@@ -18,11 +18,9 @@ import com.cmlteam.covidapp.dto.Slot
 import com.cmlteam.covidapp.dto.Target
 import com.example.covid_app.R
 import com.example.demoappdrawermenu.service.HttpService
-import kotlinx.android.synthetic.main.supermarket_view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.time.LocalDateTime
 
 class SupermarketActivity : AppCompatActivity() {
 
