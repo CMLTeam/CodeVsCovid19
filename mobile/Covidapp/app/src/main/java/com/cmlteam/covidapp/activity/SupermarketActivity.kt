@@ -1,6 +1,7 @@
 package com.cmlteam.covidapp.activity
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -12,6 +13,7 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.cmlteam.covidapp.dto.Slot
 import com.cmlteam.covidapp.dto.Target
 import com.example.covid_app.R
@@ -24,12 +26,10 @@ class SupermarketActivity : AppCompatActivity() {
 
     private lateinit var toolbar: ActionBar
     private var mSupermarketList: List<Target>? = listOf(
-        Target(
-            1, "Auchan", 500, 50, "City, Street, Building",
+        Target(1, "shop", "Auchan", 500, 50, "City, Street, Building",
             45.1f, 45.2f, "Mon-Fri: 09:00-20:00 Sat-Sun: 09:00-17:00", "", listOf(
-                Slot(1, "Mon 30 Mar 09:00-09:30", "2020-30-03T09:00:00", "2020-30-03T09:30:00", 15)
-            )
-        )
+                Slot(1, 1,"Mon 30 Mar 09:00-09:30", "2020-30-03T09:00:00", "2020-30-03T09:30:00", 15)
+            ))
     )
     private var mRecyclerView: RecyclerView? = null
     private var mLayoutManager: LinearLayoutManager? = null
@@ -48,21 +48,21 @@ class SupermarketActivity : AppCompatActivity() {
     private fun setupRecyclerView(recyclerView: RecyclerView?) {
 
         HttpService.create().getPlaces()
-            .enqueue(object : Callback<Any> {
-                override fun onFailure(call: Call<Any>, t: Throwable) {
-                    println("Error: $t")
-                }
+            .enqueue(object : Callback<List<Target>> {
+            override fun onFailure(call: Call<List<Target>>, t: Throwable) {
+                println("Error: $t")
+            }
 
-                override fun onResponse(call: Call<Any>, response: Response<Any>) {
-                    mSupermarketList = response.body() as List<Target>
-                    if (recyclerView !== null && mSupermarketList !== null) {
-                        mLayoutManager = LinearLayoutManager(recyclerView.context)
-                        recyclerView.layoutManager = mLayoutManager
-                        recyclerView.adapter = SupermarketRecyclerViewAdapter()
-                    }
+            override fun onResponse(call: Call<List<Target>>, response: Response<List<Target>>) {
+                mSupermarketList = response.body() as List<Target>
+                if (recyclerView !== null && mSupermarketList !== null) {
+                    mLayoutManager = LinearLayoutManager(recyclerView.context)
+                    recyclerView.layoutManager = mLayoutManager
+                    recyclerView.adapter = SupermarketRecyclerViewAdapter()
                 }
+            }
 
-            })
+        })
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -78,7 +78,7 @@ class SupermarketActivity : AppCompatActivity() {
     }
 
     private fun goToMarket(market: Target) {
-        startActivity(Intent(this, SupermarketActivity::class.java).putExtra("targetId", market.id))
+        startActivity(Intent(this, SlotActivity::class.java).putExtra("targetId", market.id))
     }
 
 
@@ -96,11 +96,16 @@ class SupermarketActivity : AppCompatActivity() {
             holder.marketName.text = market.name
             holder.marketAddress.text = market.address
             holder.marketCapacity.text = "max: " + market.maxPeopleCapacity.toString()
-            holder.marketHours.text = market.workHours
-            holder.marketDistance.text = ((market.distance) / 1000.0f).toString() + " km"
-//            holder.marketImage.image
+            holder.marketHours.text = market.workingTime
+            holder.marketDistance.text = ((market.distance)/1000.0f).toString() + " km"
             holder.availableToday.text = "12"
             holder.availableTomorrow.text = "17"
+
+            Glide.with(this@SupermarketActivity)
+                .load(market.pictureUrl)
+                .dontAnimate()
+                .fitCenter()
+                .into(holder.marketImage)
 
             holder.mView.setOnClickListener {
                 goToMarket(market)
