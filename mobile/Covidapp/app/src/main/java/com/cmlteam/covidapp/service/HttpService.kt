@@ -70,7 +70,7 @@ interface HttpService {
             val retrofit = Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("http://cmlteam.com:38080")
+                .baseUrl("http://cmlteam.com:8099")
                 .client(client)
                 .build()
 

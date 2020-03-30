@@ -1,5 +1,6 @@
 package com.cmlteam.covidapp.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -14,13 +15,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cmlteam.covidapp.dto.Slot
 import com.cmlteam.covidapp.dto.Target
 import com.example.covid_app.R
+import com.example.demoappdrawermenu.service.HttpService
 import kotlinx.android.synthetic.main.supermarket_view.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.time.LocalDateTime
 
 class SupermarketActivity : AppCompatActivity() {
 
     private lateinit var toolbar: ActionBar
-    private var mSupermarketList: List<Target> = listOf(
+    private var mSupermarketList: List<Target>? = listOf(
         Target(1, "Auchan", 500, 50, "City, Street, Building",
             45.1f, 45.2f, "Mon-Fri: 09:00-20:00 Sat-Sun: 09:00-17:00", "", listOf(
                 Slot(1, "Mon 30 Mar 09:00-09:30", "2020-30-03T09:00:00", "2020-30-03T09:30:00", 15)
@@ -41,12 +46,23 @@ class SupermarketActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView(recyclerView: RecyclerView?) {
-        if (recyclerView !== null) {
-            mLayoutManager = LinearLayoutManager(recyclerView.context)
-            recyclerView.layoutManager = mLayoutManager
-            recyclerView.adapter = SupermarketRecyclerViewAdapter()
-        }
 
+        HttpService.create().getPlaces()
+            .enqueue(object : Callback<Any> {
+            override fun onFailure(call: Call<Any>, t: Throwable) {
+                println("Error: $t")
+            }
+
+            override fun onResponse(call: Call<Any>, response: Response<Any>) {
+                mSupermarketList = response.body() as List<Target>
+                if (recyclerView !== null && mSupermarketList !== null) {
+                    mLayoutManager = LinearLayoutManager(recyclerView.context)
+                    recyclerView.layoutManager = mLayoutManager
+                    recyclerView.adapter = SupermarketRecyclerViewAdapter()
+                }
+            }
+
+        })
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -61,6 +77,10 @@ class SupermarketActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayShowHomeEnabled(true)
     }
 
+    private fun goToMarket(market: Target) {
+        startActivity(Intent(this, SupermarketActivity::class.java).putExtra("targetId", market.id))
+    }
+
 
     inner class SupermarketRecyclerViewAdapter :
         RecyclerView.Adapter<SupermarketRecyclerViewAdapter.ViewHolder>() {
@@ -72,22 +92,27 @@ class SupermarketActivity : AppCompatActivity() {
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            val market = mSupermarketList[position]
+            val market = mSupermarketList!![position]
             holder.marketName.text = market.name
             holder.marketAddress.text = market.address
             holder.marketCapacity.text = "max: " + market.maxPeopleCapacity.toString()
             holder.marketHours.text = market.workHours
-            holder.marketDistance.text = (market.distance/1000).toString() + " km"
+            holder.marketDistance.text = ((market.distance)/1000.0f).toString() + " km"
 //            holder.marketImage.image
             holder.availableToday.text = "12"
             holder.availableTomorrow.text = "17"
+
+            holder.mView.setOnClickListener {
+                goToMarket(market)
+            }
+
         }
 
         override fun getItemCount(): Int {
             return mSupermarketList!!.count()
         }
 
-        inner class ViewHolder(mView: View) :
+        inner class ViewHolder(val mView: View) :
             RecyclerView.ViewHolder(mView) {
             val marketName = mView.findViewById(R.id.market_name) as TextView
             val marketAddress = mView.findViewById(R.id.market_address) as TextView
