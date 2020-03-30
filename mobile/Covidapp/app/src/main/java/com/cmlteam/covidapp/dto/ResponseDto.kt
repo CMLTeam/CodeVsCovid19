@@ -1,14 +1,16 @@
 package com.cmlteam.covidapp.dto
 
 data class Customer(
-    val id: Int, // customer id
-    val phoneNumber: String, // phoneNumber,
-    val documentId: String, //some sort of ID for government, acquired via BankID (potentially)
-    val score: Int, // from 0 to 1000
-    val status: String, // enum: [normal, required_doctor_visit, covid19_positive]
-    val address: String, // just to print
-    val pictureUrl: String, // to put it in <img> tag
-    val closeCommunicationWith: List<Int>? // ids of customers user communicates with frequently
+    val id: Int,
+    val phoneNumber: String,
+    val documentId: String,
+    val name: String,
+    val illnessRate: Int,
+    val status: String,
+    val address: String,
+    val pictureUrl: String,
+    val closeCommunicationWith: List<Int>,
+    val bookedSlots: List<Int>
 )
 
 data class Target(

@@ -1,6 +1,7 @@
 package com.example.demoappdrawermenu.service
 
 import com.cmlteam.covidapp.dto.BookSlotRequest
+import com.cmlteam.covidapp.dto.Customer
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -12,10 +13,8 @@ import java.util.concurrent.TimeUnit
 
 interface HttpService {
 
-    @GET("/customers/{id}")
-    fun getUser(
-        @Path("id") id: String
-    ): Call<Any>//User>
+    @GET("/me")
+    fun getCustomerPage():Call<Customer>
 
 
     @GET("/targets")
