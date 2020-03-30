@@ -23,6 +23,7 @@ Wash your hands often (even several times per hour) using soap and warm water. I
     <string name="bad_advice">THE TEXT FOR ADVICE WHILE ILLNESS RATE UNDER 200 WILL BE HERE</string>
     <string name="bottom_bar_profile">Profile</string>
     <string name="bottom_bar_QR">QR Code</string>
+    <string name="qr_code_advice">You should show this QR Code to a guard in a shop nearby</string>
 
 
     <!-- Supermarkets strings -->

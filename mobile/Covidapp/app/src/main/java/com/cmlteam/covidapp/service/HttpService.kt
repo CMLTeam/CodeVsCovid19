@@ -53,13 +53,6 @@ interface HttpService {
     ) : Call<List<Int>>
 
 
-
-//    @POST("/auth/sign-up")
-//    fun signUp(
-//        @Body signUpRequest: SignUpAccountRequest
-//    ):Call<Void>
-//
-
     companion object {
         fun create(): HttpService {
 

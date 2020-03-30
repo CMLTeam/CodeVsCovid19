@@ -72,18 +72,6 @@
             android:text="@string/good_advice" />
 
 
-
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_gravity="center"
-            android:src="@drawable/qr_code_sample"
-            />
-
-
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -95,18 +83,6 @@
             android:text="@string/people_in_contact" />
 
 
-
-        <!--        <LinearLayout-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:orientation="vertical">-->
-
-        <!--            <androidx.recyclerview.widget.RecyclerView-->
-        <!--                android:id="@+id/contact_people_recycler_view"-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="match_parent" />-->
-        <!--        </LinearLayout>-->
-
         <!-- Hardcoded -->
         <TextView
             android:layout_width="match_parent"
@@ -114,7 +90,7 @@
             android:layout_marginTop="10dp"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="@color/bad_illness_rate"
+            android:textColor="@color/good_illness_rate"
             android:text="Tom Roley, 845"/>
 
         <TextView
@@ -132,7 +108,7 @@
             android:layout_marginTop="10dp"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="@color/good_illness_rate"
+            android:textColor="@color/bad_illness_rate"
             android:text="Bill Eggson, 10"/>
 
 
@@ -199,7 +175,7 @@
             android:textStyle="bold"
             android:textSize="16sp"
             android:text="+38057382948"
-            android:layout_marginBottom="50dp"/>
+            android:layout_marginBottom="70dp"/>
 
     </LinearLayout>
 

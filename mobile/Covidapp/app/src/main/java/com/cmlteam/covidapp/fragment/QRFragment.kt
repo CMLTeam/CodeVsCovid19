@@ -13,9 +13,7 @@ class QRFragment: Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_qr, container, false)
-
-        return view
+        return inflater.inflate(R.layout.fragment_qr, container, false)
     }
 
     companion object {
